@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Pelea_Mele.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Pelea_Mele.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\Pelea_MeleEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\README.md" />
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Pelea_Mele">
+      <UniqueIdentifier>{147F8D10-8613-3000-8773-D5EA7C8B53A5}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Pelea_Mele\Pelea_Mele.Build.cs">
+      <Filter>Source\Pelea_Mele</Filter>
+    </None>
+    <ClInclude Include="..\..\Source\Pelea_Mele\Pelea_Mele.h">
+      <Filter>Source\Pelea_Mele</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Pelea_Mele\Pelea_Mele.cpp">
+      <Filter>Source\Pelea_Mele</Filter>
+    </ClCompile>
+    <Filter Include="Source\Pelea_Mele\Public">
+      <UniqueIdentifier>{362DFF5B-9421-321A-9F4C-009B8CB998E2}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Pelea_Mele\Public\Ninja.h">
+      <Filter>Source\Pelea_Mele\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Pelea_Mele\Public\PeleaMeleGameInstance.h">
+      <Filter>Source\Pelea_Mele\Public</Filter>
+    </ClInclude>
+    <Filter Include="Source\Pelea_Mele\Private">
+      <UniqueIdentifier>{55B749F2-14E1-399D-A8E9-B85493AD3728}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Pelea_Mele\Private\Ninja.cpp">
+      <Filter>Source\Pelea_Mele\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Pelea_Mele\Private\PeleaMeleGameInstance.cpp">
+      <Filter>Source\Pelea_Mele\Private</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
