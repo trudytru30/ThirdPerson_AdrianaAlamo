@@ -2,6 +2,6 @@
 	"BuildId": "43139311",
 	"Modules": 
 	{
-		"Pelea_Mele": "UnrealEditor-Pelea_Mele.dll"
+		"PeleaMelee": "UnrealEditor-PeleaMelee.dll"
 	}
 }

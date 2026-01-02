@@ -1,13 +1,13 @@
 {
 	"Targets": [
 		{
-			"Name": "Pelea_Mele",
-			"Path": "..\\Source\\Pelea_Mele.Target.cs",
+			"Name": "PeleaMelee",
+			"Path": "..\\Source\\PeleaMelee.Target.cs",
 			"Type": "Game"
 		},
 		{
-			"Name": "Pelea_MeleEditor",
-			"Path": "..\\Source\\Pelea_MeleEditor.Target.cs",
+			"Name": "PeleaMeleeEditor",
+			"Path": "..\\Source\\PeleaMeleeEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]

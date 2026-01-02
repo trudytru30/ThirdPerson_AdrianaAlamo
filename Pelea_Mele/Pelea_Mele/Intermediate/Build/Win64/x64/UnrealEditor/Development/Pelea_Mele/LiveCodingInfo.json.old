@@ -1,9 +1,0 @@
-{
-	"RemapUnityFiles": 
-	{
-		"Module.Pelea_Mele.gen.cpp.obj": [
-			"Ninja.gen.cpp.obj",
-			"Pelea_Mele.init.gen.cpp.obj"
-		]
-	}
-}
