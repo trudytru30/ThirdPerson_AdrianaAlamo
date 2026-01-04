@@ -17,7 +17,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 // ********** Begin Class ANinja *******************************************************************
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_24_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execLanzarHumo); \
 	DECLARE_FUNCTION(execDeath); \
 	DECLARE_FUNCTION(execLossHealth); \
@@ -26,7 +26,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 PELEAMELEE_API UClass* Z_Construct_UClass_ANinja_NoRegister();
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_22_INCLASS_NO_PURE_DECLS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_24_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesANinja(); \
 	friend struct Z_Construct_UClass_ANinja_Statics; \
@@ -37,7 +37,7 @@ public: \
 	DECLARE_SERIALIZER(ANinja)
 
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_22_ENHANCED_CONSTRUCTORS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_24_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	ANinja(ANinja&&) = delete; \
 	ANinja(const ANinja&) = delete; \
@@ -47,13 +47,13 @@ public: \
 	NO_API virtual ~ANinja();
 
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_19_PROLOG
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_22_GENERATED_BODY \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_21_PROLOG
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_24_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_22_INCLASS_NO_PURE_DECLS \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_22_ENHANCED_CONSTRUCTORS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_24_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_24_INCLASS_NO_PURE_DECLS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_24_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

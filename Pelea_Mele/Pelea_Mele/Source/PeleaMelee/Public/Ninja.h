@@ -2,8 +2,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "Ninja.generated.h"
 
+class UHealthComponent;
 class UUserWidget;
 class USoundBase;
 class UInputAction;
@@ -25,7 +27,7 @@ public:
 	ANinja();
 
 protected:
-//Test
+
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
@@ -63,6 +65,10 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
+	UCameraComponent* Camera = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
+	USpringArmComponent* SpringArm;
 
 	// Inventario
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Inventory|Ammo")
@@ -72,8 +78,13 @@ public:
 	int32 BombCount = 0;
 
 	// Vida
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stats")
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
+	UHealthComponent* HealthComp = nullptr;
+	
 	float Health = 100.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stats")
+	float MaxHealth = 100.0f;
 
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	void LossHealth(float HealthToLoss);
@@ -159,6 +170,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Combat|Smoke")
 	void LanzarHumo();
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
+	bool bThrowBomb = false;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Combat|Smoke")
 	UNiagaraSystem* SmokeSystem = nullptr;
@@ -167,10 +181,7 @@ public:
 	FVector SmokeSystemScale = FVector(0.2f, 0.2f, 0.2f);
 
 	// ---------- Ataque con Shuriken ----------
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat|Shuriken")
-	UCameraComponent* Camera = nullptr;
-
+	
 	// HUD creado en BeginPlay (equivalente a la variable "HUD" del BP)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="UI")
 	UUserWidget* IHUD = nullptr;

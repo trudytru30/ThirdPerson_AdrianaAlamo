@@ -6,6 +6,17 @@
 			"description": "Default Uncontrolled Changelist",
 			"files": [
 				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/Maps/TEST.umap",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/Characters/Ninja/BPs/Character/BP_NinjaCharacter.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/StarterContent/Maps/Advanced_Lighting_BuiltData.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/GameMode/BP_Ninja_GameMode.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/Characters/Ninja/Animations/ABP_Ninja.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/Characters/Ninja/Animations/ABP_NinjaCharacter.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/Characters/Ninja/BPs/Character/BP_Ninja.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/Widgets/HUD.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/BPS_Objects_Interacts/Modify_Health/BP_Botiquin.uasset",
+				"G:/Adriana/Unreal/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/BPS_Objects_Interacts/Modify_Health/BP_HealthPotion.uasset",
 				"E:/Portatil/clase/Utad/3_INSO/Q1/Programacion Videojuegos/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/StarterContent/Architecture/Floor_400x400.uasset",
 				"E:/Portatil/clase/Utad/3_INSO/Q1/Programacion Videojuegos/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/Characters/Enemy/AI_ControllerEnemy.uasset",
 				"E:/Portatil/clase/Utad/3_INSO/Q1/Programacion Videojuegos/ThirdPerson_AdrianaAlamo/Pelea_Mele/Pelea_Mele/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset"

@@ -1,0 +1,11 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.PeleaMelee.gen.cpp.obj": [
+			"HealthComponent.gen.cpp.obj",
+			"Ninja.gen.cpp.obj",
+			"PeleaMelee.init.gen.cpp.obj",
+			"PeleaMeleeGameInstance.gen.cpp.obj"
+		]
+	}
+}

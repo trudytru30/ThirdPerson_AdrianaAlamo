@@ -1,0 +1,30 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\source\\peleamelee\\private\\healthpickup.cpp",
+        "ProvidedModule": "",
+        "PCH": "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\intermediate\\build\\win64\\x64\\peleameleeeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.inclorderunreal5_3.h.pch",
+        "Includes": [
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\peleamelee\\definitions.peleamelee.h",
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\source\\peleamelee\\public\\healthpickup.h",
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\intermediate\\build\\win64\\unrealeditor\\inc\\peleamelee\\uht\\healthpickup.generated.h",
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\source\\peleamelee\\public\\healthcomponent.h",
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\intermediate\\build\\win64\\unrealeditor\\inc\\peleamelee\\uht\\healthcomponent.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\components\\spherecomponent.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\spherecomponent.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\kismet\\gameplaystatics.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetsystemlibrary.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\coreuobject\\public\\uobject\\propertyaccessutil.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\kismetsystemlibrary.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\sound\\dialoguetypes.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\dialoguetypes.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\kismet\\gameplaystaticstypes.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gameplaystaticstypes.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gameplaystatics.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

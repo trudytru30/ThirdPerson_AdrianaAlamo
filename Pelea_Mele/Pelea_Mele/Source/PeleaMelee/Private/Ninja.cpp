@@ -9,6 +9,7 @@
 #include "Engine/World.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "HealthComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "InputAction.h"
@@ -25,8 +26,27 @@
 ANinja::ANinja()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	HealthComp =CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComp"));
 	PawnNoiseEmitter = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("PawnNoiseEmitter"));
 	MotionWarping = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarping"));
+	
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArm->SetupAttachment(GetRootComponent());
+	SpringArm->TargetArmLength = 300.0f;
+	
+	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	Camera->SetupAttachment(SpringArm);
+
+	GetMesh()->SetupAttachment(GetCapsuleComponent());
+	GetMesh()->SetRelativeLocation(FVector(0.0f, 0.0f, -90.0f));
+	GetMesh()->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
+
+	bUseControllerRotationYaw = false;
+	if (UCharacterMovementComponent* Move = GetCharacterMovement())
+	{
+		Move->bOrientRotationToMovement = true;
+	}
+	
 }
 
 void ANinja::BeginPlay()
@@ -344,6 +364,7 @@ void ANinja::TryGetVictimTargetTransform(FTransform& OutTransform, bool& bOutHas
 
 void ANinja::LanzarHumo()
 {
+	//TODO Setear throwbomb
 	if (BombCount <= 0)
 	{
 		return;
