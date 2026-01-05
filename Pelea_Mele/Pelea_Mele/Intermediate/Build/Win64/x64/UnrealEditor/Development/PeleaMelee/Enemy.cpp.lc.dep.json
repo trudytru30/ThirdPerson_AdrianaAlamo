@@ -1,0 +1,24 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\source\\peleamelee\\private\\enemy.cpp",
+        "ProvidedModule": "",
+        "PCH": "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\intermediate\\build\\win64\\x64\\peleameleeeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.inclorderunreal5_3.h.pch",
+        "Includes": [
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\peleamelee\\definitions.peleamelee.h",
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\source\\peleamelee\\public\\enemy.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\net\\core\\public\\net\\core\\nettoken\\nettokenexportcontext.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\intermediate\\build\\win64\\unrealeditor\\inc\\peleamelee\\uht\\enemy.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

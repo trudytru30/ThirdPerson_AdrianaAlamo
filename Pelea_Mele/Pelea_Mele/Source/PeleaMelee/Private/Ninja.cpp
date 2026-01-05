@@ -21,11 +21,15 @@
 #include "Components/PawnNoiseEmitterComponent.h"
 #include "Sound/SoundBase.h"
 #include "TimerManager.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
+#include "Components/CanvasPanel.h"
+#include "Components/CanvasPanelSlot.h"
 #include "UObject/UnrealType.h"
 
 ANinja::ANinja()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	
 	HealthComp =CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComp"));
 	PawnNoiseEmitter = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("PawnNoiseEmitter"));
 	MotionWarping = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarping"));
@@ -33,19 +37,28 @@ ANinja::ANinja()
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArm->SetupAttachment(GetRootComponent());
 	SpringArm->TargetArmLength = 300.0f;
+	SpringArm->bUsePawnControlRotation = true;      // el brazo sigue al ratón (controller)
+	SpringArm->bDoCollisionTest = true;
 	
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	Camera->SetupAttachment(SpringArm);
+	Camera->SetupAttachment(SpringArm,USpringArmComponent::SocketName);
+	Camera->bUsePawnControlRotation = false; 
 
+	// El personaje NO debe rotar con el ratón
+	bUseControllerRotationYaw   = false;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationRoll  = false;
+
+	if (UCharacterMovementComponent* Move = GetCharacterMovement())
+	{
+		Move->bOrientRotationToMovement = true;       // rota hacia WASD
+		Move->bUseControllerDesiredRotation = false;  // no seguir al controller
+		Move->RotationRate = FRotator(0.f, 540.f, 0.f);
+	}
+	
 	GetMesh()->SetupAttachment(GetCapsuleComponent());
 	GetMesh()->SetRelativeLocation(FVector(0.0f, 0.0f, -90.0f));
 	GetMesh()->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
-
-	bUseControllerRotationYaw = false;
-	if (UCharacterMovementComponent* Move = GetCharacterMovement())
-	{
-		Move->bOrientRotationToMovement = true;
-	}
 	
 }
 
@@ -75,19 +88,45 @@ void ANinja::BeginPlay()
 				IHUD->AddToViewport(HUDZOrder);
 			}
 		}
+
+		if (IHUD)
+		{
+			if (UWidget* Found = IHUD->GetWidgetFromName(TEXT("CrossHair")))
+			{
+				CrossHair = Cast<UImage>(Found);
+				SetCrossHairVisible(false);
+
+				if (UCanvasPanelSlot* Slot = Cast<UCanvasPanelSlot>(CrossHair->Slot))
+				{
+					Slot->SetAnchors(FAnchors(0.f,0.f,0.f,0.f));
+					Slot->SetAlignment(FVector2D(0.5f,0.5f));
+				}
+			}
+		}
 	}
 
+	AimOffsetUMG = FVector2D::ZeroVector;
+	SetAiming(false);
+	
 	// Recuperar valores del GameInstance
 	if (UPeleaMeleeGameInstance* GI = Cast<UPeleaMeleeGameInstance>(GetGameInstance()))
 	{
 		ShurikensCount = GI->ShurikensCount;
 		BombCount = GI->BombCount;
 	}
+
+
 }
+
 
 void ANinja::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (bIsAiming)
+	{
+		UpdateAimOffsetFromMouse();
+		UpdateAimFromCrosshair(DeltaTime);
+	}
 }
 
 void ANinja::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -144,9 +183,13 @@ void ANinja::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void ANinja::LossHealth(float HealthToLoss)
 {
-	Health -= HealthToLoss;
+	if (!HealthComp)
+	{
+		return;
+	}
 
-	if (Health <= 0.0f)
+	HealthComp->ApplyDelta(-HealthToLoss);
+	if (HealthComp->GetCurrentHealt()<=0.0f)
 	{
 		Death();
 	}
@@ -214,6 +257,12 @@ void ANinja::ApplyGameOverPause()
 void ANinja::OnNinjaLookTriggered(const FInputActionValue& Value)
 {
 	const FVector2D LookAxis = Value.Get<FVector2D>();
+	if (!bIsAiming)
+	{
+
+		return;
+	}
+	
 	AddControllerYawInput(LookAxis.X);
 	AddControllerPitchInput(LookAxis.Y);
 }
@@ -224,8 +273,19 @@ void ANinja::OnNinjaMoveTriggered(const FInputActionValue& Value)
 {
 	const FVector2D MoveAxis = Value.Get<FVector2D>();
 
-	const FRotator ControlRot = Controller ? Controller->GetControlRotation() : GetActorRotation();
-	const FRotator YawRot(0.0f, ControlRot.Yaw, 0.0f);
+	FRotator YawRot;
+
+	if (bIsAiming)
+	{
+		// En aim: movimiento relativo al personaje (strafe real)
+		YawRot = FRotator(0.0f, GetActorRotation().Yaw, 0.0f);
+	}
+	else
+	{
+		// Normal: movimiento relativo a la cámara (controller yaw)
+		const FRotator ControlRot = Controller ? Controller->GetControlRotation() : GetActorRotation();
+		YawRot = FRotator(0.0f, ControlRot.Yaw, 0.0f);
+	}
 
 	const FVector ForwardDir = FRotationMatrix(YawRot).GetUnitAxis(EAxis::X);
 	const FVector RightDir   = FRotationMatrix(YawRot).GetUnitAxis(EAxis::Y);
@@ -252,8 +312,8 @@ void ANinja::OnNinjaSneakTriggered(const FInputActionValue& Value)
 
 	if (UCharacterMovementComponent* Move = GetCharacterMovement())
 	{
-		Move->bOrientRotationToMovement = false;
-		Move->bUseControllerDesiredRotation = true;
+		Move->bOrientRotationToMovement = true;
+		Move->bUseControllerDesiredRotation = false;
 	}
 }
 
@@ -392,7 +452,164 @@ void ANinja::LanzarHumo()
 	}
 }
 
+
+
 // ---------------- Shuriken Attack ----------------
+
+void ANinja::SetAiming(bool bNewAiming)
+{
+	bIsAiming = bNewAiming;
+	if (UCharacterMovementComponent* Move = GetCharacterMovement())
+	{
+		if (bIsAiming)
+		{
+			//Desactivamos la rotacion en funcion del movimiento
+			Move->bOrientRotationToMovement = false;
+			bUseControllerRotationYaw = false;
+			AimOffsetUMG = FVector2D::ZeroVector;
+		}
+		else
+		{
+			Move->bOrientRotationToMovement = true;
+			AimOffsetUMG = FVector2D::ZeroVector;
+		}
+	}
+	
+}
+
+void ANinja::UpdateAimFromCrosshair(float DeltaTime)
+{
+	if (!CrossHair)
+	{
+		return;
+	}
+	
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (!PC)
+	{
+		return;
+	}
+
+	FVector2D ScreenPx;
+	if (!GetCrosshairScreenPointPx(ScreenPx))
+	{
+		return;
+	}
+	//Posicionamos el Slot que contiene el Crosshair
+	if (UCanvasPanelSlot* Slot = Cast<UCanvasPanelSlot>(CrossHair->Slot))
+	{
+		const float Scale = UWidgetLayoutLibrary::GetViewportScale(this);
+		const FVector2D PosUMG = ScreenPx /Scale;
+
+		Slot->SetAnchors(FAnchors(0.f,0.f,0.f,0.f));
+		Slot->SetAlignment(FVector2D(0.5f, 0.5f));
+		Slot->SetPosition(PosUMG);
+	}
+
+	//Deprojectamos desde el crosshair, para obtener la posición en el mundo 3D
+	FVector WorldOrigin, WorldDirection;
+	if (!PC->DeprojectScreenPositionToWorld(ScreenPx.X,ScreenPx.Y, WorldOrigin, WorldDirection))
+	{
+		TargetEnemy = nullptr;
+		SetCrossHairTint(CrossHairColorBase);
+		return;
+	}
+
+	//Realizamos un linetrace para orientar al player y detectar si tenemos un enemigo bajo el crosshair
+	const FVector Start = WorldOrigin;
+	const FVector End = Start + (WorldDirection*ShurikenTraceDistance);
+
+	FHitResult Hit;
+	FCollisionQueryParams Params(TEXT("NinjaAimTrace"),false);
+	Params.AddIgnoredActor(this);
+
+	const bool bHit = GetWorld()->LineTraceSingleByChannel(Hit,Start,End,ECC_Visibility,Params);
+
+	AActor* HitActor = bHit ? Hit.GetActor() : nullptr;
+	const FVector AimPoint = bHit ? Hit.ImpactPoint : End;
+
+	//Orientamos al player hacia el crosshair
+	FVector ToAim = AimPoint - GetActorLocation();
+	ToAim.Z = 0.0f;
+
+	if (ToAim.SizeSquared() > 1.0f)
+	{
+		const float TargetYaw = ToAim.Rotation().Yaw;
+		const FRotator CurrentRot = GetActorRotation();
+		const FRotator TargetRot (0.f,TargetYaw,0.f);
+
+		const FRotator NewRot = FMath::RInterpTo(CurrentRot,TargetRot,DeltaTime,AimTurnSpeed);
+		SetActorRotation(NewRot);
+	}
+
+	//Detectamos si la colision es con un enemigo y tintamos el punto de mira
+	if (HitActor && HitActor!=this && HitActor->FindComponentByClass<UHealthComponent>())
+	{
+		TargetEnemy = HitActor;
+		SetCrossHairTint(CrossHairColorOverEnemy);
+	}
+	else
+	{
+		TargetEnemy = nullptr;
+		SetCrossHairTint(CrossHairColorBase);
+	}
+}
+
+void ANinja::UpdateAimOffsetFromMouse()
+{
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (!PC)
+	{
+		return;
+	}
+	float MouseX = 0.f, MouseY = 0.f;
+	if (!UWidgetLayoutLibrary::GetMousePositionScaledByDPI(PC,MouseX,MouseY))
+	{
+		return;
+	}
+	int32 SizeX=0, SizeY=0;
+	PC->GetViewportSize(SizeX,SizeY);
+
+	const float Scale = UWidgetLayoutLibrary::GetViewportScale(this);
+	const FVector2D ViewSizeUMG = FVector2D((float)SizeX, (float)SizeY)/Scale;
+	const FVector2D CenterUMG = ViewSizeUMG * 0.5f;
+
+	const FVector2D MouseUMG(MouseX,MouseY);
+	AimOffsetUMG = MouseUMG - CenterUMG;
+}
+
+bool ANinja::GetCrosshairScreenPointPx(FVector2D& OutPx) 
+{
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (!PC)
+	{
+		return false;
+	}
+
+	int32 SizeX=0,SizeY=0;
+	PC->GetViewportSize(SizeX,SizeY);
+
+	const float Scale = UWidgetLayoutLibrary::GetViewportScale(this);
+	if (Scale<=0)
+	{
+		return false;
+	}
+
+	//TODO Revisar Casteos a C++
+	const FVector2D ViewSizeUMG = FVector2D((float)SizeX, (float)SizeY)/Scale;
+	const FVector2D CenterUMG = ViewSizeUMG * 0.5f;
+
+	//Clampeo a limites de pantalla
+	const FVector2D Half = CrossHairSizeUMG * 0.5f;
+
+	FVector2D DesireUMG = CenterUMG + AimOffsetUMG;
+	DesireUMG.X = FMath::Clamp(DesireUMG.X, Half.X, ViewSizeUMG.X -Half.X);
+	DesireUMG.Y  = FMath::Clamp(DesireUMG.Y,Half.Y, ViewSizeUMG.Y -Half.Y);
+
+	AimOffsetUMG = DesireUMG -CenterUMG;
+	OutPx = DesireUMG * Scale;
+	return true;
+}
 
 void ANinja::OnNinjaFireTriggered(const FInputActionValue& Value)
 {
@@ -400,10 +617,18 @@ void ANinja::OnNinjaFireTriggered(const FInputActionValue& Value)
 	{
 		return;
 	}
-
-	EnsureCrossHairReference();
+	//Activar un puntero invisible para ubicar nuestro crosshair
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		PC->bShowMouseCursor = false;
+		FInputModeGameAndUI Mode;
+		Mode.SetHideCursorDuringCapture(false);
+		Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockAlways);
+		PC->SetInputMode(Mode);
+	}
+	
+	SetAiming(true);
 	SetCrossHairVisible(true);
-	UpdateTargetEnemyFromTrace();
 }
 
 void ANinja::OnNinjaFireCompleted(const FInputActionValue& Value)
@@ -412,30 +637,14 @@ void ANinja::OnNinjaFireCompleted(const FInputActionValue& Value)
 	{
 		return;
 	}
-
-	EnsureCrossHairReference();
-	SetCrossHairVisible(false);
-
 	ShurikensCount = FMath::Max(0, ShurikensCount - 1);
 
 	ApplyShurikenDamageToTarget();
+	SetCrossHairVisible(false);
+	SetAiming(false);
 }
 
-void ANinja::EnsureCrossHairReference()
-{
-	if (CrossHair)
-	{
-		return;
-	}
 
-	if (IHUD)
-	{
-		if (UWidget* Found = IHUD->GetWidgetFromName(TEXT("CrossHair")))
-		{
-			CrossHair = Cast<UImage>(Found);
-		}
-	}
-}
 
 void ANinja::SetCrossHairVisible(bool bVisible)
 {
@@ -458,41 +667,6 @@ void ANinja::SetCrossHairTint(const FLinearColor& Tint)
 	CrossHair->SetColorAndOpacity(Tint);
 }
 
-void ANinja::UpdateTargetEnemyFromTrace()
-{
-	//TODO Revisar este codigo
-	UCameraComponent* CameraComp = Camera ? Camera : FindComponentByClass<UCameraComponent>();
-	if (!CameraComp || !GetWorld())
-	{
-		TargetEnemy = nullptr;
-		SetCrossHairTint(CrossHairColorBase);
-		return;
-	}
-
-	const FVector Start = CameraComp->GetComponentLocation();
-	const FVector End = GetActorLocation() + (CameraComp->GetForwardVector() * ShurikenTraceDistance);
-
-	FHitResult Hit;
-	FCollisionQueryParams Params(SCENE_QUERY_STAT(NinjaShurikenTrace), false);
-	Params.AddIgnoredActor(this);
-
-	const bool bHit = GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, Params);
-	AActor* HitActor = bHit ? Hit.GetActor() : nullptr;
-
-	// Aproximación al "Cast To BP_Enemy": considerar enemigo si tiene float "Health"
-	static const FName HealthPropName(TEXT("Health"));
-
-	if (HitActor && FindFProperty<FFloatProperty>(HitActor->GetClass(), HealthPropName))
-	{
-		TargetEnemy = HitActor;
-		SetCrossHairTint(CrossHairColorOverEnemy);
-	}
-	else
-	{
-		TargetEnemy = nullptr;
-		SetCrossHairTint(CrossHairColorBase);
-	}
-}
 
 void ANinja::ApplyShurikenDamageToTarget()
 {

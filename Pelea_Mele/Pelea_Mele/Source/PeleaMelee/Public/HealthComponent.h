@@ -31,7 +31,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Health")
 	float ApplyDelta(float Delta);
 	
+	UFUNCTION(BlueprintCallable, Category="Health")
+	float GetCurrentHealt() {return CurrentHealth;}
 
+	UFUNCTION(BlueprintCallable, Category="Health")
+	float GetMaxHealt() {return MaxHealth;}
+	
 
 protected:
 	// Called when the game starts

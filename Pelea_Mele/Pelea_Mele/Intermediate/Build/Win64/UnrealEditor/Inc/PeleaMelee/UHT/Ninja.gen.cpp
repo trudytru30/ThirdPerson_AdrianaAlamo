@@ -15,6 +15,7 @@ void EmptyLinkFunctionForGeneratedCodeNinja() {}
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FLinearColor();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
+COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector2D();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
@@ -262,10 +263,6 @@ struct Z_Construct_UClass_ANinja_Statics
 		{ "ToolTip", "Vida" },
 #endif
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaxHealth_MetaData[] = {
-		{ "Category", "Stats" },
-		{ "ModuleRelativePath", "Public/Ninja.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GameOverMenuWidgetClass_MetaData[] = {
 		{ "Category", "GameOver" },
 		{ "ModuleRelativePath", "Public/Ninja.h" },
@@ -361,6 +358,10 @@ struct Z_Construct_UClass_ANinja_Statics
 		{ "ToolTip", "---------- Ataque b\xc3\xa1sico / Asesinato ----------" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bAttacking_MetaData[] = {
+		{ "Category", "Combat|Attack" },
+		{ "ModuleRelativePath", "Public/Ninja.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Victim_MetaData[] = {
 		{ "Category", "Combat|Attack" },
 		{ "ModuleRelativePath", "Public/Ninja.h" },
@@ -418,12 +419,28 @@ struct Z_Construct_UClass_ANinja_Statics
 		{ "Category", "UI" },
 		{ "ModuleRelativePath", "Public/Ninja.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsAiming_MetaData[] = {
+		{ "Category", "Aim" },
+		{ "ModuleRelativePath", "Public/Ninja.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ShurikenTraceDistance_MetaData[] = {
 		{ "Category", "Combat|Shuriken" },
 		{ "ModuleRelativePath", "Public/Ninja.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ShurikenDamage_MetaData[] = {
 		{ "Category", "Combat|Shuriken" },
+		{ "ModuleRelativePath", "Public/Ninja.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AimSensitivity_MetaData[] = {
+		{ "Category", "Aim" },
+		{ "ModuleRelativePath", "Public/Ninja.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AimTurnSpeed_MetaData[] = {
+		{ "Category", "Aim" },
+		{ "ModuleRelativePath", "Public/Ninja.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CrossHairSizeUMG_MetaData[] = {
+		{ "Category", "Aim" },
 		{ "ModuleRelativePath", "Public/Ninja.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GameOverMenuWidget_MetaData[] = {
@@ -439,7 +456,6 @@ struct Z_Construct_UClass_ANinja_Statics
 	static const UECodeGen_Private::FIntPropertyParams NewProp_ShurikensCount;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_BombCount;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HealthComp;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_GameOverMenuWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DeathSound;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_GameOverDelaySeconds;
@@ -458,6 +474,8 @@ struct Z_Construct_UClass_ANinja_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MoveNoiseLoudness;
 	static void NewProp_bCanAttack_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bCanAttack;
+	static void NewProp_bAttacking_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bAttacking;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Victim;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MotionWarping;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AssassinMontage;
@@ -471,8 +489,13 @@ struct Z_Construct_UClass_ANinja_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CrossHair;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CrossHairColorBase;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CrossHairColorOverEnemy;
+	static void NewProp_bIsAiming_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsAiming;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ShurikenTraceDistance;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ShurikenDamage;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_AimSensitivity;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_AimTurnSpeed;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_CrossHairSizeUMG;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_GameOverMenuWidget;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_TargetEnemy;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -494,7 +517,6 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_ShurikensCount = { "ShurikensCount", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, ShurikensCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ShurikensCount_MetaData), NewProp_ShurikensCount_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_BombCount = { "BombCount", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, BombCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BombCount_MetaData), NewProp_BombCount_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_HealthComp = { "HealthComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, HealthComp), Z_Construct_UClass_UHealthComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HealthComp_MetaData), NewProp_HealthComp_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_MaxHealth = { "MaxHealth", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, MaxHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHealth_MetaData), NewProp_MaxHealth_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_GameOverMenuWidgetClass = { "GameOverMenuWidgetClass", nullptr, (EPropertyFlags)0x0014000000010015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, GameOverMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameOverMenuWidgetClass_MetaData), NewProp_GameOverMenuWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_DeathSound = { "DeathSound", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, DeathSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DeathSound_MetaData), NewProp_DeathSound_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_GameOverDelaySeconds = { "GameOverDelaySeconds", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, GameOverDelaySeconds), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameOverDelaySeconds_MetaData), NewProp_GameOverDelaySeconds_MetaData) };
@@ -519,6 +541,11 @@ void Z_Construct_UClass_ANinja_Statics::NewProp_bCanAttack_SetBit(void* Obj)
 	((ANinja*)Obj)->bCanAttack = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_bCanAttack = { "bCanAttack", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ANinja), &Z_Construct_UClass_ANinja_Statics::NewProp_bCanAttack_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bCanAttack_MetaData), NewProp_bCanAttack_MetaData) };
+void Z_Construct_UClass_ANinja_Statics::NewProp_bAttacking_SetBit(void* Obj)
+{
+	((ANinja*)Obj)->bAttacking = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_bAttacking = { "bAttacking", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ANinja), &Z_Construct_UClass_ANinja_Statics::NewProp_bAttacking_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bAttacking_MetaData), NewProp_bAttacking_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_Victim = { "Victim", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, Victim), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Victim_MetaData), NewProp_Victim_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_MotionWarping = { "MotionWarping", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, MotionWarping), Z_Construct_UClass_UMotionWarpingComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MotionWarping_MetaData), NewProp_MotionWarping_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_AssassinMontage = { "AssassinMontage", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, AssassinMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AssassinMontage_MetaData), NewProp_AssassinMontage_MetaData) };
@@ -535,8 +562,16 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_CrossHair = { "CrossHair", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, CrossHair), Z_Construct_UClass_UImage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrossHair_MetaData), NewProp_CrossHair_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_CrossHairColorBase = { "CrossHairColorBase", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, CrossHairColorBase), Z_Construct_UScriptStruct_FLinearColor, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrossHairColorBase_MetaData), NewProp_CrossHairColorBase_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_CrossHairColorOverEnemy = { "CrossHairColorOverEnemy", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, CrossHairColorOverEnemy), Z_Construct_UScriptStruct_FLinearColor, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrossHairColorOverEnemy_MetaData), NewProp_CrossHairColorOverEnemy_MetaData) };
+void Z_Construct_UClass_ANinja_Statics::NewProp_bIsAiming_SetBit(void* Obj)
+{
+	((ANinja*)Obj)->bIsAiming = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_bIsAiming = { "bIsAiming", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ANinja), &Z_Construct_UClass_ANinja_Statics::NewProp_bIsAiming_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsAiming_MetaData), NewProp_bIsAiming_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_ShurikenTraceDistance = { "ShurikenTraceDistance", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, ShurikenTraceDistance), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ShurikenTraceDistance_MetaData), NewProp_ShurikenTraceDistance_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_ShurikenDamage = { "ShurikenDamage", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, ShurikenDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ShurikenDamage_MetaData), NewProp_ShurikenDamage_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_AimSensitivity = { "AimSensitivity", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, AimSensitivity), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AimSensitivity_MetaData), NewProp_AimSensitivity_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_AimTurnSpeed = { "AimTurnSpeed", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, AimTurnSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AimTurnSpeed_MetaData), NewProp_AimTurnSpeed_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_CrossHairSizeUMG = { "CrossHairSizeUMG", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, CrossHairSizeUMG), Z_Construct_UScriptStruct_FVector2D, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrossHairSizeUMG_MetaData), NewProp_CrossHairSizeUMG_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_GameOverMenuWidget = { "GameOverMenuWidget", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, GameOverMenuWidget), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameOverMenuWidget_MetaData), NewProp_GameOverMenuWidget_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_TargetEnemy = { "TargetEnemy", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, TargetEnemy), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TargetEnemy_MetaData), NewProp_TargetEnemy_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ANinja_Statics::PropPointers[] = {
@@ -545,7 +580,6 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ANinja_St
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_ShurikensCount,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_BombCount,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_HealthComp,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_MaxHealth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_GameOverMenuWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_DeathSound,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_GameOverDelaySeconds,
@@ -562,6 +596,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ANinja_St
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_PawnNoiseEmitter,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_MoveNoiseLoudness,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_bCanAttack,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_bAttacking,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_Victim,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_MotionWarping,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_AssassinMontage,
@@ -574,8 +609,12 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ANinja_St
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_CrossHair,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_CrossHairColorBase,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_CrossHairColorOverEnemy,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_bIsAiming,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_ShurikenTraceDistance,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_ShurikenDamage,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_AimSensitivity,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_AimTurnSpeed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_CrossHairSizeUMG,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_GameOverMenuWidget,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_TargetEnemy,
 };
@@ -616,10 +655,10 @@ ANinja::~ANinja() {}
 struct Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ANinja, ANinja::StaticClass, TEXT("ANinja"), &Z_Registration_Info_UClass_ANinja, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ANinja), 1138494595U) },
+		{ Z_Construct_UClass_ANinja, ANinja::StaticClass, TEXT("ANinja"), &Z_Registration_Info_UClass_ANinja, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ANinja), 1944571738U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_2943753217(TEXT("/Script/PeleaMelee"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_3979584435(TEXT("/Script/PeleaMelee"),
 	Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

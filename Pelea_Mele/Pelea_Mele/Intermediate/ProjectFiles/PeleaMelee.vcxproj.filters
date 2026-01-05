@@ -45,6 +45,15 @@
     <Filter Include="Source\PeleaMelee\Private">
       <UniqueIdentifier>{2482669A-A0A0-3134-B298-833935A0A9ED}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\PeleaMelee\Private\Enemy.cpp">
+      <Filter>Source\PeleaMelee\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PeleaMelee\Private\HealthComponent.cpp">
+      <Filter>Source\PeleaMelee\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PeleaMelee\Private\HealthPickup.cpp">
+      <Filter>Source\PeleaMelee\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PeleaMelee\Private\Ninja.cpp">
       <Filter>Source\PeleaMelee\Private</Filter>
     </ClCompile>
@@ -54,6 +63,15 @@
     <Filter Include="Source\PeleaMelee\Public">
       <UniqueIdentifier>{F31BB978-CB1D-3520-9DA3-451ACD019046}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\PeleaMelee\Public\Enemy.h">
+      <Filter>Source\PeleaMelee\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PeleaMelee\Public\HealthComponent.h">
+      <Filter>Source\PeleaMelee\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PeleaMelee\Public\HealthPickup.h">
+      <Filter>Source\PeleaMelee\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\PeleaMelee\Public\Ninja.h">
       <Filter>Source\PeleaMelee\Public</Filter>
     </ClInclude>

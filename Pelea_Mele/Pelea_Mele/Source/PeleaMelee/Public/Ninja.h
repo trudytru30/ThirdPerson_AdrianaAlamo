@@ -52,21 +52,29 @@ protected:
 	void OnNinjaAttackStarted(const FInputActionValue& Value);
 
 	// Helpers UI/Trace
-	void EnsureCrossHairReference();
 	void SetCrossHairVisible(bool bVisible);
 	void SetCrossHairTint(const FLinearColor& Tint);
-	void UpdateTargetEnemyFromTrace();
-	void ApplyShurikenDamageToTarget();
-
+	
 	// Helpers Attack
 	void DoAssassinationAttack();
 	void TryGetVictimTargetTransform(FTransform& OutTransform, bool& bOutHasTransform) const;
 
+	//Aim Helpers
+	void SetAiming(bool bNewAiming);
+	void UpdateAimFromCrosshair(float DeltaTime);
+	void UpdateAimOffsetFromMouse();
+	bool GetCrosshairScreenPointPx(FVector2D& OutPx);
+
+	//Damage
+	void ApplyShurikenDamageToTarget();
+
 public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
 	UCameraComponent* Camera = nullptr;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
 	USpringArmComponent* SpringArm;
 
@@ -82,10 +90,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
 	UHealthComponent* HealthComp = nullptr;
 	
-	float Health = 100.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Stats")
-	float MaxHealth = 100.0f;
-
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	void LossHealth(float HealthToLoss);
 
@@ -152,6 +156,9 @@ public:
 	bool bCanAttack = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat|Attack")
+	bool bAttacking = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat|Attack")
 	AActor* Victim = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Combat|Attack")
@@ -195,20 +202,34 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="UI")
 	FLinearColor CrossHairColorOverEnemy = FLinearColor::Red;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Aim")
+	bool bIsAiming = false;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat|Shuriken")
 	float ShurikenTraceDistance = 1500.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat|Shuriken")
 	float ShurikenDamage = 50.0f;
 
+	UPROPERTY(EditAnywhere, Category="Aim")
+	float AimSensitivity = 10.0f;
+
+	UPROPERTY(EditAnywhere, Category="Aim")
+	float AimTurnSpeed = 12.0f;
+
+	UPROPERTY(EditAnywhere, Category="Aim")
+	FVector2D CrossHairSizeUMG = FVector2D(32.f, 32.f);
+
+
 private:
 	UPROPERTY()
 	UUserWidget* GameOverMenuWidget = nullptr;
 
 	FTimerHandle GameOverDelayHandle;
-
 	bool bDeathTriggered = false;
 
 	UPROPERTY()
 	AActor* TargetEnemy = nullptr;
+
+	FVector2D AimOffsetUMG = FVector2D::ZeroVector;
 };

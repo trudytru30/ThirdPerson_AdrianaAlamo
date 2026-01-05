@@ -409,12 +409,24 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\PeleaMelee\PeleaMelee.h"/>
+    <ClCompile Include="..\..\Source\PeleaMelee\Private\Enemy.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PeleaMelee\Private\HealthComponent.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PeleaMelee\Private\HealthPickup.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PeleaMelee\Private\Ninja.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\PeleaMelee\Private\PeleaMeleeGameInstance.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClInclude Include="..\..\Source\PeleaMelee\Public\Enemy.h"/>
+    <ClInclude Include="..\..\Source\PeleaMelee\Public\HealthComponent.h"/>
+    <ClInclude Include="..\..\Source\PeleaMelee\Public\HealthPickup.h"/>
     <ClInclude Include="..\..\Source\PeleaMelee\Public\Ninja.h"/>
     <ClInclude Include="..\..\Source\PeleaMelee\Public\PeleaMeleeGameInstance.h"/>
   </ItemGroup>

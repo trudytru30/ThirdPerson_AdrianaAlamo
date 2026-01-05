@@ -25,6 +25,8 @@ PELEAMELEE_API void FOnHealthChangedSignature_DelegateWrapper(const FMulticastSc
 
 // ********** Begin Class UHealthComponent *********************************************************
 #define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execGetMaxHealt); \
+	DECLARE_FUNCTION(execGetCurrentHealt); \
 	DECLARE_FUNCTION(execApplyDelta);
 
 

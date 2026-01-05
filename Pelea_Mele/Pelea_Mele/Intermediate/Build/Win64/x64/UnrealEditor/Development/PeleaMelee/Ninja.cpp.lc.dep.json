@@ -135,6 +135,8 @@
             "d:\\epic games\\ue_5.6\\engine\\plugins\\enhancedinput\\intermediate\\build\\win64\\unrealeditor\\inc\\enhancedinput\\uht\\enhancedplayerinput.generated.h",
             "d:\\epic games\\ue_5.6\\engine\\plugins\\enhancedinput\\intermediate\\build\\win64\\unrealeditor\\inc\\enhancedinput\\uht\\enhancedinputsubsysteminterface.generated.h",
             "d:\\epic games\\ue_5.6\\engine\\plugins\\enhancedinput\\intermediate\\build\\win64\\unrealeditor\\inc\\enhancedinput\\uht\\enhancedinputsubsystems.generated.h",
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\source\\peleamelee\\public\\healthcomponent.h",
+            "g:\\adriana\\unreal\\thirdperson_adrianaalamo\\pelea_mele\\pelea_mele\\intermediate\\build\\win64\\unrealeditor\\inc\\peleamelee\\uht\\healthcomponent.generated.h",
             "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementcomponent.h",
             "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\ai\\navigation\\navigationavoidancetypes.h",
             "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\navigationavoidancetypes.generated.h",
@@ -236,7 +238,16 @@
             "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\particlesystemcomponent.generated.h",
             "d:\\epic games\\ue_5.6\\engine\\plugins\\fx\\niagara\\intermediate\\build\\win64\\unrealeditor\\inc\\niagara\\uht\\niagarafunctionlibrary.generated.h",
             "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\engine\\classes\\components\\pawnnoiseemittercomponent.h",
-            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\pawnnoiseemittercomponent.generated.h"
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\pawnnoiseemittercomponent.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\umg\\public\\components\\canvaspanel.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\slate\\public\\widgets\\layout\\sconstraintcanvas.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\umg\\public\\components\\panelwidget.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\umg\\public\\components\\panelslot.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\panelslot.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\panelwidget.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\canvaspanel.generated.h",
+            "d:\\epic games\\ue_5.6\\engine\\source\\runtime\\umg\\public\\components\\canvaspanelslot.h",
+            "d:\\epic games\\ue_5.6\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\canvaspanelslot.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
