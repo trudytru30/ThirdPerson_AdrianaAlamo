@@ -231,6 +231,8 @@ private:
 	UPROPERTY()
 	UUserWidget* GameOverMenuWidget = nullptr;
 
+	UFUNCTION()
+	void OnNinjaDied();
 	FTimerHandle GameOverDelayHandle;
 	bool bDeathTriggered = false;
 

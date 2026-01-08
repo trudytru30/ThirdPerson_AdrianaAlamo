@@ -47,26 +47,36 @@ void AEnemy::BeginPlay()
 		KillZone->OnComponentEndOverlap.AddDynamic(this,&AEnemy::OnKillZoneEndOverlap);
 	}
 	
+	if (HealthComp)
+	{
+		HealthComp->OnDeath.AddDynamic(this, &AEnemy::HandleDeathFromHealth);
+	}
 }
 
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
-	// 1) Si el Ninja te ha puesto Dead=true por muerte por asesinato
-	if (bDead && !bDeathHandled)
+}
+
+void AEnemy::KillByAssassination()
+{
+	if (bDead)
 	{
-		HandleDeath();
 		return;
 	}
+	bDead = true;
+	HandleDeath();
+}
 
-	// 2) Si muere por vida <= 0
-	if (!bDead && HealthComp && HealthComp->GetCurrentHealt() <= 0.0f)
+
+void AEnemy::HandleDeathFromHealth()
+{
+	if (!bDead)
 	{
 		bDead = true;
-		HandleDeath();
 	}
-
+	HandleDeath();
 }
 
 
@@ -120,7 +130,7 @@ void AEnemy::HandleDeath()
 	{
 		if (UAnimInstance* Anim = GetMesh()->GetAnimInstance())
 		{
-			PlayAnimMontage(DeathMontage,1);
+			PlayAnimMontage(DeathMontage,0.5);
 
 			FOnMontageBlendingOutStarted BlendDelegate;
 			BlendDelegate.BindUObject(this, &AEnemy::OnDeathMontageBlendingOut);

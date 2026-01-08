@@ -120,6 +120,11 @@ void ANinja::BeginPlay()
 	{
 		Anim->SetRootMotionMode(ERootMotionMode::RootMotionFromMontagesOnly);
 	}
+
+	if (HealthComp)
+	{
+		HealthComp->OnDeath.AddDynamic(this, &ANinja::OnNinjaDied);
+	}
 }
 
 
@@ -193,13 +198,14 @@ void ANinja::LossHealth(float HealthToLoss)
 	}
 
 	HealthComp->ApplyDelta(-HealthToLoss);
-	if (HealthComp->GetCurrentHealt()<=0.0f)
-	{
-		Death();
-	}
 }
 
 // ---------------- Game Over ----------------
+
+void ANinja::OnNinjaDied()
+{
+	Death(); // tu lógica de game over
+}
 
 void ANinja::Death()
 {
@@ -388,8 +394,10 @@ void ANinja::DoAssassinationAttack()
 
 		PlayAnimMontage(AssassinMontage, 1.0f);
 	}
-
+	AEnemy* Enemy = Cast<AEnemy>(Victim);
+	Enemy->KillByAssassination();
 	// Victim montage (Play Anim Montage en Victim si es Character)
+	/*
 	if (VictimAssassinatedMontage)
 	{
 		if (ACharacter* VictimChar = Cast<ACharacter>(Victim))
@@ -397,7 +405,7 @@ void ANinja::DoAssassinationAttack()
 			VictimChar->PlayAnimMontage(VictimAssassinatedMontage, 1.0f);
 		}
 	}
-	
+	*/
 	// BP: Set Victim (vacío) + Set Sneaking? false
 	Victim = nullptr;
 	bSneaking = false;
@@ -422,8 +430,7 @@ void ANinja::OnAssassinationMontageEnded(UAnimMontage* Montage, bool bInterrupte
 			Move->SetMovementMode(MOVE_Walking);
 		}
 	}
-	AEnemy* Enemy = Cast<AEnemy>(Victim);
-	Enemy->SetbDead(true);
+
 	AssassinationVictim = nullptr;
 }
 

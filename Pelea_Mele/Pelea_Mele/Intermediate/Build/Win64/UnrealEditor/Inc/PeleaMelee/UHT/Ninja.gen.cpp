@@ -231,6 +231,35 @@ DEFINE_FUNCTION(ANinja::execOnAssassinationMontageEnded)
 }
 // ********** End Class ANinja Function OnAssassinationMontageEnded ********************************
 
+// ********** Begin Class ANinja Function OnNinjaDied **********************************************
+struct Z_Construct_UFunction_ANinja_OnNinjaDied_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Ninja.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ANinja_OnNinjaDied_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ANinja, nullptr, "OnNinjaDied", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ANinja_OnNinjaDied_Statics::Function_MetaDataParams), Z_Construct_UFunction_ANinja_OnNinjaDied_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ANinja_OnNinjaDied()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ANinja_OnNinjaDied_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ANinja::execOnNinjaDied)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnNinjaDied();
+	P_NATIVE_END;
+}
+// ********** End Class ANinja Function OnNinjaDied ************************************************
+
 // ********** Begin Class ANinja *******************************************************************
 void ANinja::StaticRegisterNativesANinja()
 {
@@ -241,6 +270,7 @@ void ANinja::StaticRegisterNativesANinja()
 		{ "LanzarHumo", &ANinja::execLanzarHumo },
 		{ "LossHealth", &ANinja::execLossHealth },
 		{ "OnAssassinationMontageEnded", &ANinja::execOnAssassinationMontageEnded },
+		{ "OnNinjaDied", &ANinja::execOnNinjaDied },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -563,6 +593,7 @@ struct Z_Construct_UClass_ANinja_Statics
 		{ &Z_Construct_UFunction_ANinja_LanzarHumo, "LanzarHumo" }, // 836473133
 		{ &Z_Construct_UFunction_ANinja_LossHealth, "LossHealth" }, // 3800991766
 		{ &Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded, "OnAssassinationMontageEnded" }, // 3364487320
+		{ &Z_Construct_UFunction_ANinja_OnNinjaDied, "OnNinjaDied" }, // 2747844154
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -715,10 +746,10 @@ ANinja::~ANinja() {}
 struct Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ANinja, ANinja::StaticClass, TEXT("ANinja"), &Z_Registration_Info_UClass_ANinja, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ANinja), 1903653084U) },
+		{ Z_Construct_UClass_ANinja, ANinja::StaticClass, TEXT("ANinja"), &Z_Registration_Info_UClass_ANinja, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ANinja), 2548431547U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_987740575(TEXT("/Script/PeleaMelee"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_3218681836(TEXT("/Script/PeleaMelee"),
 	Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

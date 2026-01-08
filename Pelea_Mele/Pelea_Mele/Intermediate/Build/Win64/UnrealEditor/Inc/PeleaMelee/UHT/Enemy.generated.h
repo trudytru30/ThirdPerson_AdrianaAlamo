@@ -22,8 +22,10 @@ struct FHitResult;
 
 // ********** Begin Class AEnemy *******************************************************************
 #define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execHandleDeathFromHealth); \
 	DECLARE_FUNCTION(execOnKillZoneEndOverlap); \
-	DECLARE_FUNCTION(execOnKillZoneBeginOverlap);
+	DECLARE_FUNCTION(execOnKillZoneBeginOverlap); \
+	DECLARE_FUNCTION(execKillByAssassination);
 
 
 PELEAMELEE_API UClass* Z_Construct_UClass_AEnemy_NoRegister();

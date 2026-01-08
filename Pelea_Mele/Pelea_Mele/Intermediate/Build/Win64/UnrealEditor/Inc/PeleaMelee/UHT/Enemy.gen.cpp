@@ -27,6 +27,65 @@ PELEAMELEE_API UClass* Z_Construct_UClass_UHealthComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_PeleaMelee();
 // ********** End Cross Module References **********************************************************
 
+// ********** Begin Class AEnemy Function HandleDeathFromHealth ************************************
+struct Z_Construct_UFunction_AEnemy_HandleDeathFromHealth_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Enemy.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemy_HandleDeathFromHealth_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_AEnemy, nullptr, "HandleDeathFromHealth", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_HandleDeathFromHealth_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemy_HandleDeathFromHealth_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_AEnemy_HandleDeathFromHealth()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemy_HandleDeathFromHealth_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemy::execHandleDeathFromHealth)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->HandleDeathFromHealth();
+	P_NATIVE_END;
+}
+// ********** End Class AEnemy Function HandleDeathFromHealth **************************************
+
+// ********** Begin Class AEnemy Function KillByAssassination **************************************
+struct Z_Construct_UFunction_AEnemy_KillByAssassination_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Death" },
+		{ "ModuleRelativePath", "Public/Enemy.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemy_KillByAssassination_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_AEnemy, nullptr, "KillByAssassination", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_KillByAssassination_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemy_KillByAssassination_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_AEnemy_KillByAssassination()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemy_KillByAssassination_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemy::execKillByAssassination)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->KillByAssassination();
+	P_NATIVE_END;
+}
+// ********** End Class AEnemy Function KillByAssassination ****************************************
+
 // ********** Begin Class AEnemy Function OnKillZoneBeginOverlap ***********************************
 struct Z_Construct_UFunction_AEnemy_OnKillZoneBeginOverlap_Statics
 {
@@ -182,6 +241,8 @@ void AEnemy::StaticRegisterNativesAEnemy()
 {
 	UClass* Class = AEnemy::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "HandleDeathFromHealth", &AEnemy::execHandleDeathFromHealth },
+		{ "KillByAssassination", &AEnemy::execKillByAssassination },
 		{ "OnKillZoneBeginOverlap", &AEnemy::execOnKillZoneBeginOverlap },
 		{ "OnKillZoneEndOverlap", &AEnemy::execOnKillZoneEndOverlap },
 	};
@@ -307,6 +368,8 @@ struct Z_Construct_UClass_AEnemy_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AEnemy_HandleDeathFromHealth, "HandleDeathFromHealth" }, // 2694556937
+		{ &Z_Construct_UFunction_AEnemy_KillByAssassination, "KillByAssassination" }, // 1618209337
 		{ &Z_Construct_UFunction_AEnemy_OnKillZoneBeginOverlap, "OnKillZoneBeginOverlap" }, // 2408954977
 		{ &Z_Construct_UFunction_AEnemy_OnKillZoneEndOverlap, "OnKillZoneEndOverlap" }, // 3337678195
 	};
@@ -375,10 +438,10 @@ AEnemy::~AEnemy() {}
 struct Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 4042397460U) },
+		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 895157855U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_1373486862(TEXT("/Script/PeleaMelee"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_409192409(TEXT("/Script/PeleaMelee"),
 	Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

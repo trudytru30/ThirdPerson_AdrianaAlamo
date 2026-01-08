@@ -21,6 +21,10 @@ public:
 
 	void SetbDead(bool Dead){bDead = Dead;};
 
+	UFUNCTION(BlueprintCallable, Category="Death")
+	void KillByAssassination();
+
+
 protected:
 	
 	virtual void BeginPlay() override;
@@ -66,6 +70,9 @@ protected:
 	
 private:
 	void HandleDeath();
+	
+	UFUNCTION()
+	void HandleDeathFromHealth();
 
 	UPROPERTY()
 	UAnimMontage* PendingDeathMontage = nullptr;
