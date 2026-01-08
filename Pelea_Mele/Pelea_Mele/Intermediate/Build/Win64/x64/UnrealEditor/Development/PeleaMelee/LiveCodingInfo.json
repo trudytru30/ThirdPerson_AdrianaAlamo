@@ -3,6 +3,7 @@
 	{
 		"Module.PeleaMelee.gen.cpp.obj": [
 			"Enemy.gen.cpp.obj",
+			"EnemyAIController.gen.cpp.obj",
 			"HealthComponent.gen.cpp.obj",
 			"HealthPickup.gen.cpp.obj",
 			"Ninja.gen.cpp.obj",

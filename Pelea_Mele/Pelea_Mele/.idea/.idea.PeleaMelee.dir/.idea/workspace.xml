@@ -8,29 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="629b077d-22e4-4bd9-bd92-d9130ceb4313" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/EnemyAIController.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/EnemyAIController.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PeleaMelee.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PeleaMelee.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/Build/SourceFileCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/SourceFileCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.gen.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.generated.h" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.generated.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Ninja.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Ninja.gen.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Ninja.generated.h" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Ninja.generated.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/PeleaMelee.init.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/PeleaMelee.init.gen.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/DependencyCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/DependencyCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.exp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.exp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Intermediate/CachedAssetRegistry_0.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/CachedAssetRegistry_0.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/TEST.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TEST.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/AutoScreenshot.png" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/AutoScreenshot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-16.00.36.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-16.08.14.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-16.11.36.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-16.13.00.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-16.25.26.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee.log" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Logs/PeleaMelee.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/Enemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/Enemy.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Public/Enemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/Enemy.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Public/Ninja.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/Ninja.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,9 +113,12 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://33" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://34" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://35" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/include/atomic" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/include/type_traits" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/AIModule/Classes/AITypes.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/AIModule/Classes/Perception/AIPerceptionTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/Core/Public/Delegates/DelegateInstancesImpl.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Private/Misc/PackageName.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectHandle.h" root0="FORCE_HIGHLIGHTING" />
@@ -286,7 +273,7 @@
       <updated>1767355248276</updated>
       <workItem from="1767355250178" duration="928000" />
       <workItem from="1767359197239" duration="31160000" />
-      <workItem from="1767804922195" duration="27957000" />
+      <workItem from="1767804922195" duration="30557000" />
     </task>
     <servers />
   </component>
