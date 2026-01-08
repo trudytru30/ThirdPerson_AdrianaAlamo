@@ -12,36 +12,85 @@
       <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.patch_0.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.patch_0.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.patch_1.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.patch_1.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Characters/Ninja/BPs/Character/BP_Ninja.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Ninja/BPs/Character/BP_Ninja.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Enemy/Animations/Anim/AM_Enemy_Assassinate.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Enemy/Animations/Anim/AM_Enemy_Assassinate.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Enemy/BP_EnemyCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Enemy/BP_EnemyCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Characters/Ninja/BPs/Character/BP_NinjaCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Ninja/BPs/Character/BP_NinjaCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/TEST.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TEST.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Widgets/HUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Widgets/HUD.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Widgets/Icons/crooshair.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/SourceFileCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/SourceFileCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.gen.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/HealthComponent.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/HealthComponent.gen.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/HealthComponent.generated.h" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/HealthComponent.generated.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Ninja.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Ninja.gen.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Ninja.generated.h" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Ninja.generated.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/PeleaMelee.init.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/PeleaMelee.init.gen.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/DependencyCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/DependencyCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/ActionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/ActionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Enemy.cpp.dep.json" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Enemy.cpp.dep.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Enemy.cpp.lc.dep.json" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Enemy.cpp.lc.dep.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Ninja.cpp.dep.json" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Ninja.cpp.dep.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Ninja.cpp.lc.dep.json" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Ninja.cpp.lc.dep.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.exp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.exp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/CachedAssetRegistry_0.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/CachedAssetRegistry_0.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/AutoScreenshot.png" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/AutoScreenshot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Ninja/BPs/Character/BP_NinjaCharacter_Auto2.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Ninja/BPs/Character/BP_NinjaCharacter_Auto2.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-12881F2A48202A228311AEB74C0B1AD6/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-1452C9C94B4D93F938BA64A817072052/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-1C3432B94BC321830171E6B87C3929DF/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-2110ACB048EFA4F06254519F688A89F0/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-33FF71DD4B68908F5352A2A0441670D7/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-35E999A54056672000AAEC98EDAFD5AB/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-36FA53F74E1D953878D0018EAF51D4DE/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-3BF0634E45CF50FC5874DB81DE878F2B/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-530B4F42418B791B16AB90BF48080C71/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-582FD41E40CF1288892BDDAAD62F449D/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-5BDD3B6046C0096278AFF0ABB797A605/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-5D425A13492643D9952D5A874AFFB309/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-6940F48E49402B6A145A55A16D4CB21C/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-69BD7EC24CEEA662556FD8A3DCACC07A/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-6BCF008049C779730A1205BE1D8B0F76/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-6D4F719047EBAFB38E1A00B0ED78BC29/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-767F4B1B434AB6A5ABC685A1405FAE0C/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-7B73EF3D44902A601AD30A93C8B40BC8/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-7D776229496BEBA2ADD52DB5816A81BB/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-84BA6277487D27A059A949A791F2610B/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-8E5417A44C88DE7B2FE41D83C217C002/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-8E8B5D664034EFE047E10D8D75E522AF/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-9B142B0D417FE0A5C50707BA0A2C9E8E/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-9C6A6ED843E1753E2F824586355C4B9A/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-A79D943D41C425E98CA44595F3D18A02/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-A918CF644A54E0878CB215A5317C0238/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-AC39454F43120FBBB58356AC377B7AB3/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-AE7A0CBB4BC68677905732B094B61CDB/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-B39604F64BFD06671C5E25B5FA521322/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-DDF3AD2F4CF702BCEF50A0A715C6840F/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-E7498A8F41AC3CC0BFD81C8A56F0495B/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-E7E2209F4D312F1480878CA56DDBCA61/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-F22C5B54465635351731C9A921BBA9D3/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-F66EA4D24CFE85B196BD8BBC1F2F3854/CrashReportClient.ini" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.02-11.52.05.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.02-13.02.56.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.02-13.28.15.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.02-13.48.57.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-11.27.53.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-11.38.24.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-12.40.26.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-13.36.15.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-13.44.57.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-13.55.18.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-19.25.15.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-19.48.26.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-19.55.37.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.04-19.57.25.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.05-10.17.51.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.05-11.38.45.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.05-12.10.23.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.05-12.19.54.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.05-13.25.44.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.05-13.43.23.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee.log" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Logs/PeleaMelee.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/Pelea_Mele-backup-2025.12.27-14.09.50.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/Pelea_Mele-backup-2025.12.30-12.25.06.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/Pelea_Mele-backup-2025.12.30-15.10.30.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/Pelea_Mele-backup-2026.01.02-11.09.45.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/Pelea_Mele-backup-2026.01.02-11.11.53.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/SourceControl/UncontrolledChangelists.json" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/SourceControl/UncontrolledChangelists.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/Enemy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/Enemy.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/HealthComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/HealthComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/HealthPickup.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/HealthPickup.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Public/Enemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/Enemy.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Public/HealthComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/HealthComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Public/Ninja.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/Ninja.h" afterDir="false" />
     </list>
@@ -62,12 +111,12 @@
     &quot;assignee&quot;: &quot;4LiveStudioGit&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/trudytru30/ThirdPerson_AdrianaAlamo.git",
-    "accountId": "b9ae3b0f-72a7-49df-bb78-76bddf400f02"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/trudytru30/ThirdPerson_AdrianaAlamo.git&quot;,
+    &quot;accountId&quot;: &quot;b9ae3b0f-72a7-49df-bb78-76bddf400f02&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
@@ -142,32 +191,15 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://37" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://24" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://25" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/include/atomic" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/include/type_traits" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/Core/Public/Delegates/DelegateInstancesImpl.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Private/Misc/PackageName.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectHandle.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectPtr.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Classes/Animation/AnimInstance.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/HealthPickup.gen.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -317,6 +349,7 @@
       <updated>1767355248276</updated>
       <workItem from="1767355250178" duration="928000" />
       <workItem from="1767359197239" duration="31160000" />
+      <workItem from="1767804922195" duration="25161000" />
     </task>
     <servers />
   </component>
@@ -346,6 +379,16 @@
           <url>file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectPtr.h</url>
           <line>680</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp</url>
+          <line>424</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp</url>
+          <line>407</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

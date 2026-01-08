@@ -23,8 +23,17 @@ PELEAMELEE_API void FOnHealthChangedSignature_DelegateWrapper(const FMulticastSc
 
 // ********** End Delegate FOnHealthChangedSignature ***********************************************
 
+// ********** Begin Delegate FonDeathSignature *****************************************************
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_11_DELEGATE \
+PELEAMELEE_API void FonDeathSignature_DelegateWrapper(const FMulticastScriptDelegate& onDeathSignature);
+
+
+// ********** End Delegate FonDeathSignature *******************************************************
+
 // ********** Begin Class UHealthComponent *********************************************************
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execIsInvulnerable); \
+	DECLARE_FUNCTION(execIsDead); \
 	DECLARE_FUNCTION(execGetMaxHealt); \
 	DECLARE_FUNCTION(execGetCurrentHealt); \
 	DECLARE_FUNCTION(execApplyDelta);
@@ -32,7 +41,7 @@ PELEAMELEE_API void FOnHealthChangedSignature_DelegateWrapper(const FMulticastSc
 
 PELEAMELEE_API UClass* Z_Construct_UClass_UHealthComponent_NoRegister();
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_16_INCLASS_NO_PURE_DECLS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUHealthComponent(); \
 	friend struct Z_Construct_UClass_UHealthComponent_Statics; \
@@ -43,7 +52,7 @@ public: \
 	DECLARE_SERIALIZER(UHealthComponent)
 
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_16_ENHANCED_CONSTRUCTORS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_17_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	UHealthComponent(UHealthComponent&&) = delete; \
 	UHealthComponent(const UHealthComponent&) = delete; \
@@ -53,13 +62,13 @@ public: \
 	NO_API virtual ~UHealthComponent();
 
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_13_PROLOG
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_16_GENERATED_BODY \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_14_PROLOG
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_16_INCLASS_NO_PURE_DECLS \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_16_ENHANCED_CONSTRUCTORS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_17_INCLASS_NO_PURE_DECLS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_HealthComponent_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

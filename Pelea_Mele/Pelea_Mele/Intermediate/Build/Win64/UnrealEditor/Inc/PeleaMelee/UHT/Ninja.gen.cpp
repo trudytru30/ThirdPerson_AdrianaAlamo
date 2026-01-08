@@ -179,6 +179,58 @@ DEFINE_FUNCTION(ANinja::execLossHealth)
 }
 // ********** End Class ANinja Function LossHealth *************************************************
 
+// ********** Begin Class ANinja Function OnAssassinationMontageEnded ******************************
+struct Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics
+{
+	struct Ninja_eventOnAssassinationMontageEnded_Parms
+	{
+		UAnimMontage* Montage;
+		bool bInterrupted;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Ninja.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Montage;
+	static void NewProp_bInterrupted_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bInterrupted;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::NewProp_Montage = { "Montage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(Ninja_eventOnAssassinationMontageEnded_Parms, Montage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::NewProp_bInterrupted_SetBit(void* Obj)
+{
+	((Ninja_eventOnAssassinationMontageEnded_Parms*)Obj)->bInterrupted = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::NewProp_bInterrupted = { "bInterrupted", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(Ninja_eventOnAssassinationMontageEnded_Parms), &Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::NewProp_bInterrupted_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::NewProp_Montage,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::NewProp_bInterrupted,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ANinja, nullptr, "OnAssassinationMontageEnded", Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::PropPointers), sizeof(Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::Ninja_eventOnAssassinationMontageEnded_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::Function_MetaDataParams), Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::Ninja_eventOnAssassinationMontageEnded_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ANinja::execOnAssassinationMontageEnded)
+{
+	P_GET_OBJECT(UAnimMontage,Z_Param_Montage);
+	P_GET_UBOOL(Z_Param_bInterrupted);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnAssassinationMontageEnded(Z_Param_Montage,Z_Param_bInterrupted);
+	P_NATIVE_END;
+}
+// ********** End Class ANinja Function OnAssassinationMontageEnded ********************************
+
 // ********** Begin Class ANinja *******************************************************************
 void ANinja::StaticRegisterNativesANinja()
 {
@@ -188,6 +240,7 @@ void ANinja::StaticRegisterNativesANinja()
 		{ "Death", &ANinja::execDeath },
 		{ "LanzarHumo", &ANinja::execLanzarHumo },
 		{ "LossHealth", &ANinja::execLossHealth },
+		{ "OnAssassinationMontageEnded", &ANinja::execOnAssassinationMontageEnded },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -383,6 +436,9 @@ struct Z_Construct_UClass_ANinja_Statics
 		{ "Category", "Combat|Attack" },
 		{ "ModuleRelativePath", "Public/Ninja.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AssassinationVictim_MetaData[] = {
+		{ "ModuleRelativePath", "Public/Ninja.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bThrowBomb_MetaData[] = {
 		{ "Category", "Movement" },
 		{ "ModuleRelativePath", "Public/Ninja.h" },
@@ -481,6 +537,7 @@ struct Z_Construct_UClass_ANinja_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AssassinMontage;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_VictimAssassinatedMontage;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_VictimWarpTargetName;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_AssassinationVictim;
 	static void NewProp_bThrowBomb_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bThrowBomb;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SmokeSystem;
@@ -505,6 +562,7 @@ struct Z_Construct_UClass_ANinja_Statics
 		{ &Z_Construct_UFunction_ANinja_Death, "Death" }, // 1416673002
 		{ &Z_Construct_UFunction_ANinja_LanzarHumo, "LanzarHumo" }, // 836473133
 		{ &Z_Construct_UFunction_ANinja_LossHealth, "LossHealth" }, // 3800991766
+		{ &Z_Construct_UFunction_ANinja_OnAssassinationMontageEnded, "OnAssassinationMontageEnded" }, // 3364487320
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -551,6 +609,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_AssassinMontage = { "AssassinMontage", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, AssassinMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AssassinMontage_MetaData), NewProp_AssassinMontage_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_VictimAssassinatedMontage = { "VictimAssassinatedMontage", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, VictimAssassinatedMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_VictimAssassinatedMontage_MetaData), NewProp_VictimAssassinatedMontage_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_VictimWarpTargetName = { "VictimWarpTargetName", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, VictimWarpTargetName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_VictimWarpTargetName_MetaData), NewProp_VictimWarpTargetName_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ANinja_Statics::NewProp_AssassinationVictim = { "AssassinationVictim", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ANinja, AssassinationVictim), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AssassinationVictim_MetaData), NewProp_AssassinationVictim_MetaData) };
 void Z_Construct_UClass_ANinja_Statics::NewProp_bThrowBomb_SetBit(void* Obj)
 {
 	((ANinja*)Obj)->bThrowBomb = 1;
@@ -602,6 +661,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ANinja_St
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_AssassinMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_VictimAssassinatedMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_VictimWarpTargetName,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_AssassinationVictim,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_bThrowBomb,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_SmokeSystem,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ANinja_Statics::NewProp_SmokeSystemScale,
@@ -655,10 +715,10 @@ ANinja::~ANinja() {}
 struct Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ANinja, ANinja::StaticClass, TEXT("ANinja"), &Z_Registration_Info_UClass_ANinja, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ANinja), 1944571738U) },
+		{ Z_Construct_UClass_ANinja, ANinja::StaticClass, TEXT("ANinja"), &Z_Registration_Info_UClass_ANinja, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ANinja), 1903653084U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_3979584435(TEXT("/Script/PeleaMelee"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_987740575(TEXT("/Script/PeleaMelee"),
 	Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h__Script_PeleaMelee_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

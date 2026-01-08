@@ -16,9 +16,12 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
+class UAnimMontage;
+
 // ********** Begin Class ANinja *******************************************************************
 #define FID_Pelea_Mele_Source_PeleaMelee_Public_Ninja_h_24_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execLanzarHumo); \
+	DECLARE_FUNCTION(execOnAssassinationMontageEnded); \
 	DECLARE_FUNCTION(execDeath); \
 	DECLARE_FUNCTION(execLossHealth); \
 	DECLARE_FUNCTION(execApplyGameOverPause);

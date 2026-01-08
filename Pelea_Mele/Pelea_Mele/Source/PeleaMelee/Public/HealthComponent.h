@@ -8,6 +8,7 @@
 
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChangedSignature,float,CurrentHealth,float,MaxHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FonDeathSignature);
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -19,14 +20,6 @@ public:
 	// Sets default values for this component's properties
 	UHealthComponent();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Health")
-	float MaxHealth = 100.0f;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Health")
-	float CurrentHealth = 100.0f;
-
-	UPROPERTY(BlueprintAssignable, Category="Health")
-	FOnHealthChangedSignature OnHealthChanged;
 
 	UFUNCTION(BlueprintCallable, Category="Health")
 	float ApplyDelta(float Delta);
@@ -36,12 +29,49 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Health")
 	float GetMaxHealt() {return MaxHealth;}
+
+	UFUNCTION(BlueprintCallable, Category="Health")
+	bool IsDead() {return CurrentHealth<=0.0f;}
+
+	UFUNCTION(BlueprintCallable, Category="Health")
+	bool IsInvulnerable() {return bHitReactActive;}
+
+	UPROPERTY(BlueprintAssignable, Category="Health")
+	FOnHealthChangedSignature OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable, Category="Health")
+	FonDeathSignature OnDeath;
+
+	
 	
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Health")
+	float MaxHealth = 100;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category="Health")
+	float CurrentHealth = 100;
 
+	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly, Category="Health")
+	UAnimMontage* HitReactMontage;
+
+
+private:
+	void BroadcastHealth();
+	void TryPlayHitReact();
+
+	void OnHitReactBlendingOut(UAnimMontage* Montage, bool bInterrupted);
+	void OnHitReactEnded(UAnimMontage* Montage, bool bInterrupted);
+	
+	bool bHitReactActive = false;
+
+	UPROPERTY()
+	UAnimMontage* PendingHitReactMontage = nullptr;
+	
+
+	
 	
 };

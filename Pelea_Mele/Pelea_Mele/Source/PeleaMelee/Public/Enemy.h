@@ -19,6 +19,8 @@ public:
 	AEnemy();
 	virtual void Tick(float DeltaTime) override;
 
+	void SetbDead(bool Dead){bDead = Dead;};
+
 protected:
 	
 	virtual void BeginPlay() override;
@@ -39,7 +41,19 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
 	bool bDead = false;
+	
+	//---------Death FX---------
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DeathFX")
+	UAnimMontage* DeathMontage = nullptr;
 
+	// Si no hay montage, destruimos al enemigo con un timer
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Death")
+	float DestroyDelayIfNoMontage = 0.1f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DeathFX")
+	USoundBase* DeathSound = nullptr;
+	
 	//---------Overlaps---------
 
 	UFUNCTION()
@@ -49,5 +63,21 @@ protected:
 	UFUNCTION()
 	void OnKillZoneEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+	
+private:
+	void HandleDeath();
+
+	UPROPERTY()
+	UAnimMontage* PendingDeathMontage = nullptr;
+		
+	void OnDeathMontageBlendingOut(UAnimMontage* Montage, bool bInterrupted); 
+	void OnDeathMontageEnded(UAnimMontage* Montage,bool bInterrupted);
+	
+
+	void FreezeMeshPose();
+	
+	bool bDeathHandled = false;
+	FTimerHandle DestroyTimerHandle;
+	
 	
 };

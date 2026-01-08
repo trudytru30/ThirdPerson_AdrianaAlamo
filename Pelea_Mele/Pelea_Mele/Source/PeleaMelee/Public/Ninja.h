@@ -172,6 +172,12 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Combat|Attack")
 	FName VictimWarpTargetName = TEXT("Victim");
+	
+	UPROPERTY()
+	AActor* AssassinationVictim = nullptr;
+
+	UFUNCTION()
+	void OnAssassinationMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 
 	// ---------- Bomba de humo ----------
 

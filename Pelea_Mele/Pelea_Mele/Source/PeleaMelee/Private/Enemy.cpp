@@ -4,10 +4,14 @@
 #include "Enemy.h"
 
 #include "AIController.h"
+#include "BrainComponent.h"
 #include "HealthComponent.h"
 #include "Ninja.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Components/BoxComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+
 
 static const FName BB_UnderAttackKey(TEXT("UnderAttack"));
 
@@ -48,12 +52,139 @@ void AEnemy::BeginPlay()
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	// 1) Si el Ninja te ha puesto Dead=true por muerte por asesinato
+	if (bDead && !bDeathHandled)
+	{
+		HandleDeath();
+		return;
+	}
+
+	// 2) Si muere por vida <= 0
+	if (!bDead && HealthComp && HealthComp->GetCurrentHealt() <= 0.0f)
+	{
+		bDead = true;
+		HandleDeath();
+	}
 
 }
 
 
+void AEnemy::HandleDeath()
+{
+	if (bDeathHandled)
+	{
+		return;
+	}
+	bDeathHandled = true;
+
+	//FX Audio
+	if (DeathSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this,DeathSound,GetActorLocation());
+	}
+	
+	// Desactivar killzone para que no vuelva a disparar overlaps
+	if (KillZone)
+	{
+		KillZone->SetGenerateOverlapEvents(false);
+		KillZone->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+	
+	if (UCharacterMovementComponent* Move = GetCharacterMovement())
+	{
+		Move->StopMovementImmediately();
+		Move->DisableMovement();
+	}
+
+	// Desactivar colisiones
+	SetActorEnableCollision(false);
+
+	// Parar AI + blackboard
+	if (AAIController* AIC = Cast<AAIController>(GetController()))
+	{
+		AIC->StopMovement();
+
+		if (UBlackboardComponent* BB = AIC->GetBlackboardComponent())
+		{
+			BB->SetValueAsBool(BB_UnderAttackKey, false);
+		}
+
+		if (UBrainComponent* Brain = AIC->GetBrainComponent())
+		{
+			Brain->StopLogic(TEXT("Dead"));
+		}
+	}
+
+	if (DeathMontage && GetMesh())
+	{
+		if (UAnimInstance* Anim = GetMesh()->GetAnimInstance())
+		{
+			PlayAnimMontage(DeathMontage,1);
+
+			FOnMontageBlendingOutStarted BlendDelegate;
+			BlendDelegate.BindUObject(this, &AEnemy::OnDeathMontageBlendingOut);
+			Anim->Montage_SetBlendingOutDelegate(BlendDelegate, DeathMontage);
+			
+			PendingDeathMontage = DeathMontage;
+			FOnMontageEnded EndDelegate;
+			EndDelegate.BindUObject(this,&AEnemy::OnDeathMontageEnded);
+			Anim->Montage_SetEndDelegate(EndDelegate,DeathMontage);
+			
+			return;
+		}
+	}
+
+	//Si no tenemos una animacion deleteamos al enemigo con un timer
+	if (UWorld* World =  GetWorld())
+	{
+		World->GetTimerManager().SetTimer(
+			DestroyTimerHandle,
+			this,
+			&AActor::K2_DestroyActor,
+			FMath::Max(0.0f,DestroyDelayIfNoMontage),
+			false);
+	}
+	else
+	{
+		Destroy();
+	}
+
+	
+}
+
+void AEnemy::OnDeathMontageBlendingOut(UAnimMontage* Montage, bool bInterrupted)
+{
+	if (Montage && Montage == PendingDeathMontage)
+	{
+		FreezeMeshPose();        // evita “vuelta a idle”
+		PendingDeathMontage = nullptr;
+		Destroy();
+	}
+}
+
+void AEnemy::FreezeMeshPose()
+{
+	if (USkeletalMeshComponent* Skel = GetMesh())
+	{
+		Skel->bPauseAnims = true;
+		Skel->SetComponentTickEnabled(false); // evita que el AnimBP vuelva a evaluar (idle)
+	}
+}
+
+void AEnemy::OnDeathMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	if (Montage && Montage == PendingDeathMontage)
+	{
+		FreezeMeshPose();  
+		PendingDeathMontage = nullptr;
+		Destroy();
+	}
+}
+
+
 void AEnemy::OnKillZoneBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+                                    UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (bDead)
 	{

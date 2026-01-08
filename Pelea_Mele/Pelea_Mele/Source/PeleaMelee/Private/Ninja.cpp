@@ -1,5 +1,6 @@
 #include "Ninja.h"
 
+#include "Enemy.h"
 #include "PeleaMeleeGameInstance.h"
 #include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
@@ -115,7 +116,10 @@ void ANinja::BeginPlay()
 		BombCount = GI->BombCount;
 	}
 
-
+	if (UAnimInstance* Anim = GetMesh() ? GetMesh()->GetAnimInstance() : nullptr)
+	{
+		Anim->SetRootMotionMode(ERootMotionMode::RootMotionFromMontagesOnly);
+	}
 }
 
 
@@ -349,30 +353,8 @@ void ANinja::DoAssassinationAttack()
 		return;
 	}
 
-	// Ninja montage (Play Montage en Mesh)
-	if (AssassinMontage && GetMesh() && GetMesh()->GetAnimInstance())
-	{
-		GetMesh()->GetAnimInstance()->Montage_Play(AssassinMontage, 1.0f);
-	}
-
-	// Victim montage (Play Anim Montage en Victim si es Character)
-	if (VictimAssassinatedMontage)
-	{
-		if (ACharacter* VictimChar = Cast<ACharacter>(Victim))
-		{
-			VictimChar->PlayAnimMontage(VictimAssassinatedMontage, 1.0f);
-		}
-	}
-
-	// Victim.Dead = true (por reflexión)
-	{
-		static const FName DeadPropName(TEXT("Dead"));
-		if (FBoolProperty* DeadProp = FindFProperty<FBoolProperty>(Victim->GetClass(), DeadPropName))
-		{
-			DeadProp->SetPropertyValue_InContainer(Victim, true);
-		}
-	}
-
+	AssassinationVictim = Victim;
+	
 	// Motion Warping: AddOrUpdate target "Victim" desde VictimTarget (SceneComponent) si existe
 	if (MotionWarping)
 	{
@@ -386,15 +368,63 @@ void ANinja::DoAssassinationAttack()
 		}
 	}
 
-	// Capsule -> NoCollision
+	// Ignore victim collision
 	if (UCapsuleComponent* Capsule = GetCapsuleComponent())
 	{
-		Capsule->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Capsule->IgnoreActorWhenMoving(AssassinationVictim,true);
 	}
 
+	// Ninja montage (Play Montage en Mesh)
+	if (AssassinMontage && GetMesh() && GetMesh()->GetAnimInstance())
+	{
+		if (UAnimInstance* Anim = GetMesh()->GetAnimInstance())
+		{
+			Anim->SetRootMotionMode(ERootMotionMode::RootMotionFromMontagesOnly);
+
+			FOnMontageEnded EndDelegate;
+			EndDelegate.BindUObject(this, &ANinja::OnAssassinationMontageEnded);
+			Anim->Montage_SetEndDelegate(EndDelegate, AssassinMontage);
+		}
+
+		PlayAnimMontage(AssassinMontage, 1.0f);
+	}
+
+	// Victim montage (Play Anim Montage en Victim si es Character)
+	if (VictimAssassinatedMontage)
+	{
+		if (ACharacter* VictimChar = Cast<ACharacter>(Victim))
+		{
+			VictimChar->PlayAnimMontage(VictimAssassinatedMontage, 1.0f);
+		}
+	}
+	
 	// BP: Set Victim (vacío) + Set Sneaking? false
 	Victim = nullptr;
 	bSneaking = false;
+}
+
+void ANinja::OnAssassinationMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	if (UCapsuleComponent* Capsule = GetCapsuleComponent())
+	{
+		Capsule->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+
+		if (IsValid(AssassinationVictim))
+		{
+			Capsule->IgnoreActorWhenMoving(AssassinationVictim, false);
+		}
+	}
+	
+	if (UCharacterMovementComponent* Move = GetCharacterMovement())
+	{
+		if (Move->MovementMode == MOVE_None)
+		{
+			Move->SetMovementMode(MOVE_Walking);
+		}
+	}
+	AEnemy* Enemy = Cast<AEnemy>(Victim);
+	Enemy->SetbDead(true);
+	AssassinationVictim = nullptr;
 }
 
 void ANinja::TryGetVictimTargetTransform(FTransform& OutTransform, bool& bOutHasTransform) const
@@ -421,6 +451,8 @@ void ANinja::TryGetVictimTargetTransform(FTransform& OutTransform, bool& bOutHas
 }
 
 // ---------------- Smoke Bomb ----------------
+
+
 
 void ANinja::LanzarHumo()
 {
@@ -675,11 +707,8 @@ void ANinja::ApplyShurikenDamageToTarget()
 		return;
 	}
 
-	static const FName HealthPropName(TEXT("Health"));
-
-	if (FFloatProperty* HealthProp = FindFProperty<FFloatProperty>(TargetEnemy->GetClass(), HealthPropName))
+	if (UHealthComponent* TargetHealth = TargetEnemy->FindComponentByClass<UHealthComponent>())
 	{
-		const float CurrentHealth = HealthProp->GetPropertyValue_InContainer(TargetEnemy);
-		HealthProp->SetPropertyValue_InContainer(TargetEnemy, CurrentHealth - ShurikenDamage);
+		TargetHealth->ApplyDelta(-ShurikenDamage);
 	}
 }

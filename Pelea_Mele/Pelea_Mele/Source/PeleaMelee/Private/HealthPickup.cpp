@@ -69,7 +69,7 @@ void AHealthPickup::OnCollisionBeginOverlap(UPrimitiveComponent* OverlappedCompo
 
 void AHealthPickup::Consume(UHealthComponent* HC)
 {
-	if (FMath::IsNearlyEqual(HC->MaxHealth, HC->CurrentHealth) && HealthDelta > 0.0f)
+	if (FMath::IsNearlyEqual(HC->GetMaxHealt(), HC->GetCurrentHealt()) && HealthDelta > 0.0f)
 	{
 		return;
 	}
