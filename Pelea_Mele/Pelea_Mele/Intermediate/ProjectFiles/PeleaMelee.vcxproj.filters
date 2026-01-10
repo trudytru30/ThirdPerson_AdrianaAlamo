@@ -11,6 +11,8 @@
     <None Include="..\..\Source\PeleaMeleeEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.vsconfig" />
+    <None Include="..\..\PeleaMelee.uproject.DotSettings.user" />
     <None Include="..\..\README.md" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
@@ -48,6 +50,9 @@
     <ClCompile Include="..\..\Source\PeleaMelee\Private\Enemy.cpp">
       <Filter>Source\PeleaMelee\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\PeleaMelee\Private\EnemyAIController.cpp">
+      <Filter>Source\PeleaMelee\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\PeleaMelee\Private\HealthComponent.cpp">
       <Filter>Source\PeleaMelee\Private</Filter>
     </ClCompile>
@@ -64,6 +69,9 @@
       <UniqueIdentifier>{F31BB978-CB1D-3520-9DA3-451ACD019046}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\PeleaMelee\Public\Enemy.h">
+      <Filter>Source\PeleaMelee\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PeleaMelee\Public\EnemyAIController.h">
       <Filter>Source\PeleaMelee\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PeleaMelee\Public\HealthComponent.h">

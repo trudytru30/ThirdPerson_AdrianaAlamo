@@ -2,11 +2,15 @@
 	"RemapUnityFiles": 
 	{
 		"Module.PeleaMelee.gen.cpp.obj": [
+			"BTTask_AdvancePatrolIndex.gen.cpp.obj",
+			"BTTask_PatrolIndexSynced.gen.cpp.obj",
+			"BTTask_SetPatrolPointFromRoute.gen.cpp.obj",
 			"Enemy.gen.cpp.obj",
 			"EnemyAIController.gen.cpp.obj",
 			"HealthComponent.gen.cpp.obj",
 			"HealthPickup.gen.cpp.obj",
 			"Ninja.gen.cpp.obj",
+			"PatrolRoute.gen.cpp.obj",
 			"PeleaMelee.init.gen.cpp.obj",
 			"PeleaMeleeGameInstance.gen.cpp.obj"
 		]

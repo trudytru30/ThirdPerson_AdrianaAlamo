@@ -21,7 +21,7 @@ class UPrimitiveComponent;
 struct FHitResult;
 
 // ********** Begin Class AEnemy *******************************************************************
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execHandleDeathFromHealth); \
 	DECLARE_FUNCTION(execOnKillZoneEndOverlap); \
 	DECLARE_FUNCTION(execOnKillZoneBeginOverlap); \
@@ -30,7 +30,7 @@ struct FHitResult;
 
 PELEAMELEE_API UClass* Z_Construct_UClass_AEnemy_NoRegister();
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAEnemy(); \
 	friend struct Z_Construct_UClass_AEnemy_Statics; \
@@ -41,7 +41,7 @@ public: \
 	DECLARE_SERIALIZER(AEnemy)
 
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_16_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	AEnemy(AEnemy&&) = delete; \
 	AEnemy(const AEnemy&) = delete; \
@@ -51,13 +51,13 @@ public: \
 	NO_API virtual ~AEnemy();
 
 
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_12_PROLOG
-#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_15_GENERATED_BODY \
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_13_PROLOG
+#define FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_15_INCLASS_NO_PURE_DECLS \
-	FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_15_ENHANCED_CONSTRUCTORS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_16_INCLASS_NO_PURE_DECLS \
+	FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

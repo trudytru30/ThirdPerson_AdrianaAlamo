@@ -23,6 +23,7 @@ ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 PELEAMELEE_API UClass* Z_Construct_UClass_AEnemy();
 PELEAMELEE_API UClass* Z_Construct_UClass_AEnemy_NoRegister();
+PELEAMELEE_API UClass* Z_Construct_UClass_APatrolRoute_NoRegister();
 PELEAMELEE_API UClass* Z_Construct_UClass_UHealthComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_PeleaMelee();
 // ********** End Cross Module References **********************************************************
@@ -318,6 +319,16 @@ struct Z_Construct_UClass_AEnemy_Statics
 		{ "ToolTip", "Punto para usar con el motionwarping" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PatrolRoute_MetaData[] = {
+		{ "Category", "AI" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//---------AI---------\n" },
+#endif
+		{ "ModuleRelativePath", "Public/Enemy.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "---------AI---------" },
+#endif
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bDead_MetaData[] = {
 		{ "Category", "State" },
 #if !UE_BUILD_SHIPPING
@@ -359,6 +370,7 @@ struct Z_Construct_UClass_AEnemy_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HealthComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_KillZone;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_VictimTarget;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PatrolRoute;
 	static void NewProp_bDead_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bDead;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DeathMontage;
@@ -382,6 +394,7 @@ struct Z_Construct_UClass_AEnemy_Statics
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_HealthComp = { "HealthComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemy, HealthComp), Z_Construct_UClass_UHealthComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HealthComp_MetaData), NewProp_HealthComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_KillZone = { "KillZone", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemy, KillZone), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_KillZone_MetaData), NewProp_KillZone_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_VictimTarget = { "VictimTarget", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemy, VictimTarget), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_VictimTarget_MetaData), NewProp_VictimTarget_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemy_Statics::NewProp_PatrolRoute = { "PatrolRoute", nullptr, (EPropertyFlags)0x0020080000000815, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemy, PatrolRoute), Z_Construct_UClass_APatrolRoute_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PatrolRoute_MetaData), NewProp_PatrolRoute_MetaData) };
 void Z_Construct_UClass_AEnemy_Statics::NewProp_bDead_SetBit(void* Obj)
 {
 	((AEnemy*)Obj)->bDead = 1;
@@ -395,6 +408,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AEnemy_St
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_HealthComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_KillZone,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_VictimTarget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_PatrolRoute,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_bDead,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_DeathMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemy_Statics::NewProp_DestroyDelayIfNoMontage,
@@ -438,10 +452,10 @@ AEnemy::~AEnemy() {}
 struct Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 895157855U) },
+		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 1430712474U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_409192409(TEXT("/Script/PeleaMelee"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_3795456584(TEXT("/Script/PeleaMelee"),
 	Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Pelea_Mele_Source_PeleaMelee_Public_Enemy_h__Script_PeleaMelee_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

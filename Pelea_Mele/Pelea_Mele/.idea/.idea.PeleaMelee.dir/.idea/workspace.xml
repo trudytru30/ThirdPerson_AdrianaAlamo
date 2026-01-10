@@ -8,13 +8,163 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="629b077d-22e4-4bd9-bd92-d9130ceb4313" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/EnemyAIController.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/EnemyAIController.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/BTTask_AdvancePatrolIndex.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/BTTask_PatrolIndexSynced.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/BTTask_SetPatrolPointFromRoute.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/PatrolRoute.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/BTTask_AdvancePatrolIndex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/BTTask_PatrolIndexSynced.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/BTTask_SetPatrolPointFromRoute.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/PatrolRoute.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PeleaMelee.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PeleaMelee.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.patch_0.exp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.patch_0.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.patch_1.exp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.patch_1.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor-PeleaMelee.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Enemy/ABP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Enemy/ABP_Enemy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Enemy/BP_EnemyCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Enemy/BP_EnemyCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Enemy/BT_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Enemy/BT_Enemy.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/TEST.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TEST.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRules/PeleaMeleeModuleRules.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/BuildRules/PeleaMeleeModuleRules.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/Development/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/Development/PeleaMeleeModuleRules.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/Development/PeleaMeleeModuleRules.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/Development/PeleaMeleeModuleRules.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/Development/PeleaMeleeModuleRules.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/Development/PeleaMeleeModuleRules.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/Development/PeleaMeleeModuleRules.csproj.BuildWithSkipAnalyzers" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/PeleaMeleeModuleRules.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/PeleaMeleeModuleRules.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/PeleaMeleeModuleRules.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/PeleaMeleeModuleRules/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/SourceFileCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/SourceFileCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/ActionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/ActionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/PeleaMeleeEditor/Development/PeleaMeleeEditor.uhtmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/PeleaMeleeEditor/Development/PeleaMeleeEditor.uhtmanifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.gen.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.generated.h" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Enemy.generated.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/EnemyAIController.generated.h" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/EnemyAIController.generated.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/PeleaMelee.init.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/PeleaMelee.init.gen.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Timestamp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/Timestamp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/ActionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/ActionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/Core/SharedPCH.Core.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/Core/SharedPCH.Core.RTTI.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/CoreUObject/SharedPCH.CoreUObject.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/CoreUObject/SharedPCH.CoreUObject.RTTI.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/DependencyCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/DependencyCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/Engine/SharedPCH.Engine.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/Engine/SharedPCH.Engine.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_3.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/Engine/SharedPCH.Engine.RTTI.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/Makefile.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/Makefile.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/Slate/SharedPCH.Slate.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/UnrealEd/SharedPCH.UnrealEd.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_3.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/PeleaMeleeEditor/Development/UnrealEd/SharedPCH.UnrealEd.RTTI.Cpp20.cpp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/ActionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/ActionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Definitions.PeleaMelee.h.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Enemy.cpp.lc.dep.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Enemy.cpp.obj.lc.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/EnemyAIController.cpp.dep.json" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/EnemyAIController.cpp.dep.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/HealthPickup.cpp.lc.dep.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/HealthPickup.cpp.obj.lc.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/LiveCodingInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/LiveCodingInfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/LiveCodingInfo.json.old" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/LiveCodingInfo.json.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Module.PeleaMelee.gen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Module.PeleaMelee.gen.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Module.PeleaMelee.gen.cpp.dep.json" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Module.PeleaMelee.gen.cpp.dep.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Module.PeleaMelee.gen.cpp.lc.dep.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Module.PeleaMelee.gen.cpp.obj.lc.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Module.PeleaMelee.gen.cpp.old" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Module.PeleaMelee.gen.cpp.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Ninja.cpp.lc.dep.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/Ninja.cpp.obj.lc.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/PeleaMelee.Shared.rsp.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.dll.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.dll.rsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.dll.rsp.old" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.dll.rsp.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.exp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.exp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.lib.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.lib.rsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.lib.rsp.old" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/PeleaMelee/UnrealEditor-PeleaMelee.lib.rsp.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/CachedAssetRegistry_0.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/CachedAssetRegistry_0.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/ProjectFiles/PeleaMelee.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/ProjectFiles/PeleaMelee.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/ProjectFiles/PeleaMelee.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/ProjectFiles/PeleaMelee.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/ReimportCache/3688439234.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/ReimportCache/3688439234.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PeleaMelee.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PeleaMelee.uproject.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/AutoScreenshot.png" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/AutoScreenshot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/BPS_Objects_Interacts/Modify_Health/BP_Botiquin_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/ABP_Enemy_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/ABP_Enemy_Auto2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/AI_ControllerEnemy_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/Animations/Anim/AM_Enemy_Assassinate_Auto2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/Animations/Anim/Enemy_Dead_Montage_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/BP_EnemyCharacter_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/BP_EnemyCharacter_Auto2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/BT_Enemy_Auto1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Enemy/BT_Enemy_Auto1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Ninja/Animations/ABP_Ninja_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Ninja/BPs/Character/BP_NinjaCharacter_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Ninja/BPs/Character/BP_NinjaCharacter_Auto2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Characters/Ninja/BPs/Character/BP_Ninja_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/GameMode/BP_Ninja_GameMode_Auto1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/GameMode/BP_Ninja_GameMode_Auto2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Autosaves/Game/Maps/TEST_Auto1.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Autosaves/Game/Maps/TEST_Auto1.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-0776A74147183F53F6E0A9AC0BC915AF/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-277318754323C349138A0EAB71C315B7/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-2BD6B3FB4774D7D1742F9BBA69E4D268/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-588DDC0D4745CBBC433B8AA6BB925527/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-58D8A4234CFBB206F5B5D09DF0E7FDD1/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-67AB687446214A629344609A0BFFC49A/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-6AC210E943E45A3DA9DFB397463F1DE9/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-6BB7BFD04DE6F64DB421BEBECCF921C9/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-6D8440784148AC7FB07E24B3C72676E5/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-7C569A3E4667101468C2B3822371D74F/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-8340832C43558B90611DD481A00AA12E/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-8B7FCC454A6112A55E86239B0EC30CA0/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-9BB22B80483A020FB50689894067D080/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-A58DBA7F48D18F44B272D19119B3D617/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-A7C628AB4F80A0CFB95EFE8BAA2C6AB4/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-B129CDEC4F44D01647F06AA5EAE348F3/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-B1E6A24749DE6ED3AB43B994F09A33B9/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-B6C1178A4689B5F2BA98B9B35029D5B8/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-B779755C41C89E2DD4D970A94C0F1BA4/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-C20B83A940C2B7E745BE56892021156E/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-C31515764BB4DA65973613886A9B3925/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-CD600D0F4303800D50FB9D9F2F67E5BA/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-CF99076443FCAFE2B03EC2911ED9D3C2/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-E20E491F47780120D931B2AB26F5B0D2/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-E5F3F5144DE84FA694678EB6503EBFB4/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-E67C2ECD430C9E22126C04A0F587F46A/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-E70F4C274E9093880FDA6DAD2B886A5E/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/CrashReportClient/UECC-Windows-FBB8D5494BF3AFD72527B2B7581886E4/CrashReportClient.ini" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Config/WindowsEditor/GameUserSettings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Config/WindowsEditor/GameUserSettings.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Crashes/UECC-Windows-4755016C4C725FA5EBA1FEBD5BF35929_0000/CrashContext.runtime-xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Crashes/UECC-Windows-4755016C4C725FA5EBA1FEBD5BF35929_0000/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Crashes/UECC-Windows-4755016C4C725FA5EBA1FEBD5BF35929_0000/Pelea_Mele.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Crashes/UECC-Windows-4755016C4C725FA5EBA1FEBD5BF35929_0000/UEMinidump.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Crashes/UECC-Windows-CA3633D64E2820671B9A98BB1E9C2F89_0000/CrashContext.runtime-xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Crashes/UECC-Windows-CA3633D64E2820671B9A98BB1E9C2F89_0000/CrashReportClient.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Crashes/UECC-Windows-CA3633D64E2820671B9A98BB1E9C2F89_0000/Pelea_Mele.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Crashes/UECC-Windows-CA3633D64E2820671B9A98BB1E9C2F89_0000/UEMinidump.dmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-18.02.25.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-18.10.32.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-18.20.32.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-18.37.32.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-18.57.01.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-19.04.55.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-19.07.24.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-19.08.41.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-19.12.11.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee-backup-2026.01.08-19.43.27.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Logs/PeleaMelee.log" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Logs/PeleaMelee.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/Pelea_Mele.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/UnrealVersionSelector-2026.01.02-13.00.20.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/Logs/UnrealVersionSelector-2026.01.02-13.00.20.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/SourceControl/UncontrolledChangelists.json" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/SourceControl/UncontrolledChangelists.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/EnemyAIController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/EnemyAIController.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Public/Enemy.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/Enemy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Public/EnemyAIController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/EnemyAIController.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,32 +241,10 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://34" root0="FORCE_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://35" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://10" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/include/atomic" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.38.33130/include/type_traits" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://D:/Epic Games/UE_5.6/Engine/Plugins/Runtime/OpenCV/Source/ThirdParty/OpenCV/include/opencv2/calib3d.hpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/AIModule/Classes/AITypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/AIModule/Classes/Perception/AIPerceptionTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/Core/Public/Delegates/DelegateInstancesImpl.h" root0="FORCE_HIGHLIGHTING" />
@@ -124,7 +252,18 @@
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectHandle.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectPtr.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Classes/Animation/AnimInstance.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://D:/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Private/Streaming/StreamingManagerTexture.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Intermediate/Build/Win64/UnrealEditor/Inc/PeleaMelee/UHT/HealthPickup.gen.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/PeleaMelee.Build.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/Private/Enemy.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/Private/EnemyAIController.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/Public/Enemy.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/Public/EnemyAIController.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/Public/Ninja.h" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -273,7 +412,13 @@
       <updated>1767355248276</updated>
       <workItem from="1767355250178" duration="928000" />
       <workItem from="1767359197239" duration="31160000" />
-      <workItem from="1767804922195" duration="30557000" />
+      <workItem from="1767804922195" duration="32242000" />
+      <workItem from="1767952829656" duration="860000" />
+      <workItem from="1767953878786" duration="1003000" />
+      <workItem from="1767954934162" duration="83000" />
+      <workItem from="1767959835463" duration="946000" />
+      <workItem from="1767960802121" duration="4497000" />
+      <workItem from="1768039588202" duration="14437000" />
     </task>
     <servers />
   </component>

@@ -3,21 +3,34 @@
 
 #include "EnemyAIController.h"
 
+#include "PatrolRoute.h"
+#include "Enemy.h"
+#include "Ninja.h"
+#include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Engine/TargetPoint.h"
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AIPerceptionTypes.h"
 #include "Perception/AISenseConfig_Hearing.h"
 #include "Perception/AISenseConfig_Sight.h"
+#include "Perception/AISense_Sight.h"
 
 
 static const FName BB_TargetActorKey(TEXT("TargetActor"));
 static const FName BB_LastHeardLocationKey(TEXT("LastHeardLocation"));
 static const FName BB_HasLineOfSightKey(TEXT("HasLineOfSight"));
+static const FName BB_LastKnownLocationKey(TEXT("LastKnownLocation"));
+static const FName BB_PatrolRouteKey(TEXT("PatrolRoute"));
+static const FName BB_PatrolIndexKey(TEXT("PatrolIndex"));
+static const FName BB_PatrolPointKey(TEXT("PatrolPoint"));
+static const FName BB_PatrolNeedsResyncKey(TEXT("PatrolNeedsResync"));
+
 
 
 // Sets default values
 AEnemyAIController::AEnemyAIController()
 {
+	SetupPerceptionComponent();
 }
 
 void AEnemyAIController::OnPossess(APawn* InPawn)
@@ -26,6 +39,31 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 	if (BehaviorTree)
 	{
 		RunBehaviorTree(BehaviorTree);
+	}
+	UBlackboardComponent* BB = GetBlackboardComponent();
+	if (!BB)
+	{
+		return;
+	}
+
+	if (AEnemy* Enemy = Cast<AEnemy>(InPawn))
+	{
+		if (APatrolRoute* Route = Enemy->GetPatrolRoute())
+		{
+			BB->SetValueAsObject(BB_PatrolRouteKey,Route);
+
+			const int32 NearestIndex = Route->GetNearestIndex(Enemy->GetActorLocation());
+
+			if (NearestIndex >= 0)
+			{
+				BB->SetValueAsInt(BB_PatrolIndexKey,NearestIndex);
+
+				if (ATargetPoint* TP = Route->GetPoint(NearestIndex))
+				{
+					BB->SetValueAsVector(BB_PatrolPointKey, TP->GetActorLocation());
+				}
+			}
+		}
 	}
 }
 
@@ -50,14 +88,22 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 		const bool bSensed = Stimulus.WasSuccessfullySensed();
 		BB->SetValueAsBool(BB_HasLineOfSightKey, bSensed);
 
+		ANinja* Ninja = Cast<ANinja>(Actor);
+		if (!Ninja)
+		{
+			return;
+		}
+
 		if (bSensed)
 		{
-			BB->SetValueAsObject(BB_TargetActorKey, Actor);
+			BB->SetValueAsObject(BB_TargetActorKey, Ninja);
+			FVector TargetLocation = Ninja->GetTargetLocation();
+			BB->SetValueAsVector(BB_LastKnownLocationKey,TargetLocation);
 		}
 		else
 		{
-			// Si pierde visión, no siempre conviene borrar el TargetActor (depende de tu BT)
-			// Por ahora lo dejamos, y tu BT decide si persigue/olvida.
+			BB->SetValueAsVector(BB_LastKnownLocationKey,Stimulus.StimulusLocation);
+			BB->SetValueAsBool(BB_PatrolNeedsResyncKey,true);
 		}
 		return;
 	}
@@ -67,13 +113,13 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 	{
 		if (Stimulus.WasSuccessfullySensed())
 		{
-			BB->SetValueAsVector(BB_LastHeardLocationKey, Stimulus.StimulusLocation);
-
-			// Si no tengo target, puedo “adquirir” al actor que generó ruido
-			if (!BB->GetValueAsObject(BB_TargetActorKey))
+			ANinja* Ninja = Cast<ANinja>(Actor);
+			if (!Ninja)
 			{
-				BB->SetValueAsObject(BB_TargetActorKey, Actor);
+				return;
 			}
+
+			BB->SetValueAsVector(BB_LastHeardLocationKey,Stimulus.StimulusLocation);
 		}
 	}
 }
@@ -91,7 +137,6 @@ void AEnemyAIController::SetupPerceptionComponent()
 	SightConfig->SetMaxAge(2.0f);
 
 	// Detectar “enemigos”/“neutrales”/“amigos”.
-	// De momento lo dejamos amplio para que vea al player sin configurar equipos.
 	SightConfig->DetectionByAffiliation.bDetectEnemies = true;
 	SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
 	SightConfig->DetectionByAffiliation.bDetectFriendlies = true;

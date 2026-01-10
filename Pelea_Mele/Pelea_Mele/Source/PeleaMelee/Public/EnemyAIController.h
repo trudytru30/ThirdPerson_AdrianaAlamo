@@ -7,6 +7,9 @@
 #include "EnemyAIController.generated.h"
 
 struct FAIStimulus;
+
+class UBehaviorTree;
+class UAIPerceptionComponent;
 class UAISenseConfig_Hearing;
 class UAISenseConfig_Sight;
 
@@ -17,7 +20,6 @@ class PELEAMELEE_API AEnemyAIController : public AAIController
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
 	AEnemyAIController();
 
 protected:

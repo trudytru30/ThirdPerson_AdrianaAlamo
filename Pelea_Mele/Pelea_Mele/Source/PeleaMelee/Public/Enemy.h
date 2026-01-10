@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Enemy.generated.h"
 
+class APatrolRoute;
 class UBoxComponent;
 class UHealthComponent;
 
@@ -24,6 +25,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Death")
 	void KillByAssassination();
 
+	APatrolRoute* GetPatrolRoute() const {return PatrolRoute;};
+
 
 protected:
 	
@@ -40,6 +43,11 @@ protected:
 	//Punto para usar con el motionwarping
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="MotionWarping")
 	USceneComponent* VictimTarget = nullptr;
+
+	//---------AI---------
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="AI")
+	APatrolRoute* PatrolRoute = nullptr;
+	
 
 	//---------State---------
 
