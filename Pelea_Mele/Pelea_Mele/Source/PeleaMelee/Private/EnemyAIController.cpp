@@ -24,12 +24,14 @@ static const FName BB_PatrolRouteKey(TEXT("PatrolRoute"));
 static const FName BB_PatrolIndexKey(TEXT("PatrolIndex"));
 static const FName BB_PatrolPointKey(TEXT("PatrolPoint"));
 static const FName BB_PatrolNeedsResyncKey(TEXT("PatrolNeedsResync"));
+static const FName BB_AwarenessStateKey(TEXT("AwarenessState"));
 
 
 
 // Sets default values
 AEnemyAIController::AEnemyAIController()
 {
+	PrimaryActorTick.bCanEverTick = true;
 	SetupPerceptionComponent();
 }
 
@@ -45,6 +47,18 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 	{
 		return;
 	}
+
+	// Inicializar estado
+	Suspicion = 0.f;
+	LastSeenTime = -FLT_MAX;
+	LastHeardTime = -FLT_MAX;
+	CurrentTarget = nullptr;
+	LastKnownLocation = FVector::ZeroVector;
+	LastHeardLocation = FVector::ZeroVector;
+	bHasLOS = false;
+
+	BB->SetValueAsBool(BB_HasLineOfSightKey, false);
+	BB->SetValueAsEnum(BB_AwarenessStateKey, (uint8)EAwarenessState::Doubt);
 
 	if (AEnemy* Enemy = Cast<AEnemy>(InPawn))
 	{
@@ -67,6 +81,13 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 	}
 }
 
+void AEnemyAIController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	UpdateAwareness(DeltaSeconds);
+}
+
+
 void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
 	if (!Actor)
@@ -79,31 +100,43 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 	{
 		return;
 	}
+
+	const float Now = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.f;
+	
 	const FAISenseID SightID   = SightConfig   ? SightConfig->GetSenseID()   : FAISenseID::InvalidID();
 	const FAISenseID HearingID = HearingConfig ? HearingConfig->GetSenseID() : FAISenseID::InvalidID();
 
 	// Si el estímulo es de vista
 	if (Stimulus.Type == SightID)
 	{
-		const bool bSensed = Stimulus.WasSuccessfullySensed();
-		BB->SetValueAsBool(BB_HasLineOfSightKey, bSensed);
-
 		ANinja* Ninja = Cast<ANinja>(Actor);
 		if (!Ninja)
 		{
 			return;
 		}
+		
+		const bool bSensed = Stimulus.WasSuccessfullySensed();
+		bHasLOS = bSensed;
+		
+		BB->SetValueAsBool(BB_HasLineOfSightKey, bSensed);
+
+	
 
 		if (bSensed)
 		{
-			BB->SetValueAsObject(BB_TargetActorKey, Ninja);
-			FVector TargetLocation = Ninja->GetTargetLocation();
-			BB->SetValueAsVector(BB_LastKnownLocationKey,TargetLocation);
+			CurrentTarget = Ninja;
+			LastKnownLocation = Ninja->GetActorLocation();
+			LastSeenTime = Now;
+			BB->SetValueAsVector(BB_LastKnownLocationKey,LastKnownLocation);
+
+			Suspicion = FMath::Clamp(Suspicion + 15.f, 0.f, SuspicionMax);
+			
 		}
 		else
 		{
-			BB->SetValueAsVector(BB_LastKnownLocationKey,Stimulus.StimulusLocation);
-			BB->SetValueAsBool(BB_PatrolNeedsResyncKey,true);
+			LastKnownLocation = Stimulus.StimulusLocation;
+			BB->SetValueAsVector(BB_LastKnownLocationKey, LastKnownLocation);
+			BB->SetValueAsBool(BB_PatrolNeedsResyncKey, true);
 		}
 		return;
 	}
@@ -113,13 +146,18 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 	{
 		if (Stimulus.WasSuccessfullySensed())
 		{
-			ANinja* Ninja = Cast<ANinja>(Actor);
-			if (!Ninja)
-			{
-				return;
-			}
+			CurrentTarget = Actor; 
+			LastHeardTime = Now;
 
-			BB->SetValueAsVector(BB_LastHeardLocationKey,Stimulus.StimulusLocation);
+			LastHeardLocation = Stimulus.StimulusLocation;
+			BB->SetValueAsVector(BB_LastHeardLocationKey, LastHeardLocation);
+
+			// Normalmente el sonido actualiza dónde buscar
+			LastKnownLocation = LastHeardLocation;
+			BB->SetValueAsVector(BB_LastKnownLocationKey, LastKnownLocation);
+
+			const APawn* P = GetPawn();
+			Suspicion = FMath::Clamp(Suspicion + ComputeHearingGain(Stimulus, P), 0.f, SuspicionMax);
 		}
 	}
 }
@@ -133,7 +171,7 @@ void AEnemyAIController::SetupPerceptionComponent()
 	SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
 	SightConfig->SightRadius = 1500.0f;
 	SightConfig->LoseSightRadius = 1800.0f;
-	SightConfig->PeripheralVisionAngleDegrees = 70.0f;
+	SightConfig->PeripheralVisionAngleDegrees = 120.0f;
 	SightConfig->SetMaxAge(2.0f);
 
 	// Detectar “enemigos”/“neutrales”/“amigos”.
@@ -155,6 +193,102 @@ void AEnemyAIController::SetupPerceptionComponent()
 
 	PerceptionComp->OnTargetPerceptionUpdated.AddDynamic(this, &AEnemyAIController::OnTargetPerceptionUpdated);
 
+}
+
+void AEnemyAIController::UpdateAwareness(float DeltaSeconds)
+{
+	UBlackboardComponent* BB = GetBlackboardComponent();
+	if (!BB)
+	{
+		return;
+	}
+
+	const float Now = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.f;
+
+	// Subida/bajada principal de sospecha
+	if (bHasLOS && CurrentTarget.IsValid())
+	{
+		Suspicion = FMath::Clamp(Suspicion + SightGainPerSec * DeltaSeconds, 0.f, SuspicionMax);
+	}
+	else
+	{
+		Suspicion = FMath::Clamp(Suspicion - SuspicionDecayPerSec * DeltaSeconds, 0.f, SuspicionMax);
+	}
+	
+	const bool bHoldAlertByLostSight = (Now - LastSeenTime) <= AlertHoldAfterLostSightSec;
+	const bool bHoldAlertByHeard     = (Now - LastHeardTime) <= AlertHoldAfterHeardSec;
+
+	EAwarenessState NewState = EAwarenessState::Doubt;
+
+	// Detected: solo con visión 
+	if (bHasLOS && CurrentTarget.IsValid() && Suspicion >= DetectedThreshold)
+	{
+		NewState = EAwarenessState::Detected;
+	}
+	else if (Suspicion >= AlertThreshold || bHoldAlertByLostSight || bHoldAlertByHeard)
+	{
+		NewState = EAwarenessState::Alert;
+	}
+	else
+	{
+		NewState = EAwarenessState::Doubt;
+	}
+
+	WriteBlackboard(NewState);
+}
+
+void AEnemyAIController::WriteBlackboard(EAwarenessState NewState)
+{
+	UBlackboardComponent* BB = GetBlackboardComponent();
+	if (!BB)
+	{
+		return;
+	}
+
+	BB->SetValueAsEnum(BB_AwarenessStateKey, (uint8)NewState);
+
+	// Target / LastKnown
+	if (NewState == EAwarenessState::Doubt && Suspicion <= KINDA_SMALL_NUMBER)
+	{
+		// Si ya no hay “sospecha”, limpiamos target (opcional)
+		BB->ClearValue(BB_TargetActorKey);
+	}
+	else
+	{
+		if (CurrentTarget.IsValid())
+		{
+			BB->SetValueAsObject(BB_TargetActorKey, CurrentTarget.Get());
+		}
+	}
+
+	BB->SetValueAsVector(BB_LastKnownLocationKey, LastKnownLocation);
+
+	if (NewState != CurrentAwarenessState)
+	{
+		CurrentAwarenessState = NewState;
+		OnAwarenessStateChanged.Broadcast(NewState);
+	}
+	
+}
+
+float AEnemyAIController::ComputeHearingGain(const FAIStimulus& Stimulus, const APawn* ControlledPawn) const
+{
+	// Ganancia base modulada por distancia (más cerca = más)
+	float Gain = HearingGainBase;
+
+	if (ControlledPawn)
+	{
+		const float Dist = FVector::Dist(ControlledPawn->GetActorLocation(), Stimulus.StimulusLocation);
+		const float Range = HearingConfig ? HearingConfig->HearingRange : 2000.f;
+
+		const float T = (Range > 1.f) ? FMath::Clamp(Dist / Range, 0.f, 1.f) : 1.f;
+		const float DistanceFactor = 1.f - T; // 1 cerca, 0 lejos
+
+		Gain *= (0.35f + 0.65f * DistanceFactor); // nunca 0
+	}
+	Gain *= FMath::Clamp(Stimulus.Strength, 0.25f, 1.0f);
+
+	return Gain;
 }
 
 

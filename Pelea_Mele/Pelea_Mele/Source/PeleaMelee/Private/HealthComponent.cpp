@@ -22,11 +22,11 @@ void UHealthComponent::BeginPlay()
 
 float UHealthComponent::ApplyDelta(float Delta)
 {
-	if (Delta == 0.0f || bHitReactActive)
+	if (Delta == 0.0f )
 	{
 		return CurrentHealth;
 	}
-
+	
 	const float OldHealth = CurrentHealth;
 	CurrentHealth  = FMath::Clamp(CurrentHealth+Delta,0.0f,MaxHealth);
 

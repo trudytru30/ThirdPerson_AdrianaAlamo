@@ -36,6 +36,21 @@ AEnemy::AEnemy()
 	KillZone->SetCollisionResponseToAllChannels(ECR_Ignore);
 	KillZone->SetCollisionResponseToChannel(ECC_Pawn,ECR_Overlap);
 	KillZone->SetGenerateOverlapEvents(true);
+
+	
+	//Sphere collision para el ataque
+	MeleeHitbox = CreateDefaultSubobject<USphereComponent>(TEXT("MeleeHitbox"));
+	MeleeHitbox->SetupAttachment(GetMesh(), MeleeHitboxAttachBone); 
+	MeleeHitbox->SetSphereRadius(MeleeHitboxRadius);
+
+	// Por defecto desactivada; se activa con la interfaz (anim notify)
+	MeleeHitbox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	MeleeHitbox->SetGenerateOverlapEvents(false);
+
+	MeleeHitbox->SetCollisionObjectType(ECC_WorldDynamic);
+	MeleeHitbox->SetCollisionResponseToAllChannels(ECR_Ignore);
+	MeleeHitbox->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+	
 }
 
 void AEnemy::BeginPlay()
@@ -51,11 +66,38 @@ void AEnemy::BeginPlay()
 	{
 		HealthComp->OnDeath.AddDynamic(this, &AEnemy::HandleDeathFromHealth);
 	}
+	if (MeleeHitbox)
+	{
+		MeleeHitbox->OnComponentBeginOverlap.AddDynamic(this, &AEnemy::OnMeleeHitboxBeginOverlap);
+	}
+	
+	Execute_SetMeleeWindowActive(this, false);
 }
 
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	//Descomentar para visualizar el gizmo del collaider de atqque, para ajustar distancias al player
+	/*
+	if (MeleeHitbox && GetWorld())
+	{
+		const FVector Center = MeleeHitbox->GetComponentLocation();
+		const float Radius = MeleeHitbox->GetScaledSphereRadius();
+
+		DrawDebugSphere(
+			GetWorld(),
+			Center,
+			Radius,
+			16,
+			FColor::Green,
+			false,
+			0.1f,   // duración
+			0,
+			1.5f    // grosor
+		);
+	}
+  */
 	
 }
 
@@ -182,6 +224,73 @@ void AEnemy::FreezeMeshPose()
 	}
 }
 
+void AEnemy::SetMeleeWindowActive_Implementation(bool bActive)
+{
+	bMeleeWindowActive = bActive;
+	if (bMeleeWindowActive)
+	{
+		bHitAppliedThisWindow =false;
+	}
+	if (!MeleeHitbox)
+	{
+		return;
+	}
+	MeleeHitbox->SetGenerateOverlapEvents(bMeleeWindowActive);
+	MeleeHitbox->SetCollisionEnabled(bMeleeWindowActive ? ECollisionEnabled::QueryOnly : ECollisionEnabled::NoCollision);
+
+	if (bMeleeWindowActive)
+	{
+		//Se fuerza a recalcular overlaps
+		MeleeHitbox->UpdateOverlaps();
+
+		TArray<AActor*> OverlappingActors;
+		MeleeHitbox->GetOverlappingActors(OverlappingActors,ANinja::StaticClass());
+
+		for (AActor* A :OverlappingActors)
+		{
+			TryApplyMeleeHit(A);
+			if (bHitAppliedThisWindow)
+			{
+				break;
+			}
+		}
+	}
+}
+
+void AEnemy::OnMeleeHitboxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	TryApplyMeleeHit(OtherActor);
+}
+
+void AEnemy::TryApplyMeleeHit(AActor* OtherActor)
+{
+
+	if (!bMeleeWindowActive || bHitAppliedThisWindow || bDead || bDeathHandled)
+	{
+		return;
+	}
+
+	if (!IsValid(OtherActor) || OtherActor == this)
+	{
+		return;
+	}
+
+	ANinja* Ninja = Cast<ANinja>(OtherActor);
+	if (!Ninja)
+	{
+		return;
+	}
+
+	bHitAppliedThisWindow = true;
+
+	if (UHealthComponent* NinjaHealth = Ninja->FindComponentByClass<UHealthComponent>())
+	{
+		NinjaHealth->ApplyDelta(-MeleeDamage);
+	}
+}
+
+
 void AEnemy::OnDeathMontageEnded(UAnimMontage* Montage, bool bInterrupted)
 {
 	if (Montage && Montage == PendingDeathMontage)
@@ -191,6 +300,7 @@ void AEnemy::OnDeathMontageEnded(UAnimMontage* Montage, bool bInterrupted)
 		Destroy();
 	}
 }
+
 
 
 void AEnemy::OnKillZoneBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
@@ -250,3 +360,4 @@ void AEnemy::OnKillZoneEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* O
 		}
 	}
 }
+

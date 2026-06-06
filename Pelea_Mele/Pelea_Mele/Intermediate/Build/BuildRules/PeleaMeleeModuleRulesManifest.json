@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"G:\\Adriana\\Unreal\\ThirdPerson_AdrianaAlamo\\Pelea_Mele\\Pelea_Mele\\Source\\PeleaMelee\\PeleaMelee.Build.cs",
-		"G:\\Adriana\\Unreal\\ThirdPerson_AdrianaAlamo\\Pelea_Mele\\Pelea_Mele\\Source\\PeleaMelee.Target.cs",
-		"G:\\Adriana\\Unreal\\ThirdPerson_AdrianaAlamo\\Pelea_Mele\\Pelea_Mele\\Source\\PeleaMeleeEditor.Target.cs"
-	],
-	"EngineVersion": "5.6.1"
-}

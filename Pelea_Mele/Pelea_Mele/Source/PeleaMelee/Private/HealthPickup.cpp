@@ -4,6 +4,7 @@
 #include "HealthPickup.h"
 
 #include "HealthComponent.h"
+#include "Ninja.h"
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -52,6 +53,12 @@ void AHealthPickup::Tick(float DeltaTime)
 void AHealthPickup::OnCollisionBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	ANinja* Ninja = Cast<ANinja>(OtherActor);
+	if (!Ninja)
+	{
+		return;
+	}
+	
 	if (bConsumed ||!IsValid(OtherActor) || OtherActor == this)
 	{
 		return;
