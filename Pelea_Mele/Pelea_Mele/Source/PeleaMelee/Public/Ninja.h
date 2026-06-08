@@ -193,6 +193,15 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Combat|Smoke")
 	FVector SmokeSystemScale = FVector(0.2f, 0.2f, 0.2f);
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat|Smoke")
+	float SmokeBombRadius = 500.f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Combat|Smoke")
+	float SmokeBombDuration = 4.0f;
+
+	FTimerHandle SmokeBombThrowResetHandle;
+	
+
 	// ---------- Ataque con Shuriken ----------
 	
 	// HUD creado en BeginPlay (equivalente a la variable "HUD" del BP)

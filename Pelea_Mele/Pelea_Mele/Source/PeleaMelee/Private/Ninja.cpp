@@ -1,6 +1,7 @@
 #include "Ninja.h"
 
 #include "Enemy.h"
+#include "EnemyAIController.h"
 #include "PeleaMeleeGameInstance.h"
 #include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
@@ -80,6 +81,11 @@ void ANinja::BeginPlay()
 				}
 			}
 		}
+
+		//Establece la rotacion standar al incio (no apuntado)
+		PC->bShowMouseCursor = false;
+		FInputModeGameOnly InitialInputMode;
+		PC->SetInputMode(InitialInputMode);
 
 		if (HUDWidgetClass)
 		{
@@ -267,7 +273,7 @@ void ANinja::ApplyGameOverPause()
 void ANinja::OnNinjaLookTriggered(const FInputActionValue& Value)
 {
 	const FVector2D LookAxis = Value.Get<FVector2D>();
-	if (!bIsAiming)
+	if (bIsAiming)
 	{
 
 		return;
@@ -459,11 +465,8 @@ void ANinja::TryGetVictimTargetTransform(FTransform& OutTransform, bool& bOutHas
 
 // ---------------- Smoke Bomb ----------------
 
-
-
 void ANinja::LanzarHumo()
 {
-	//TODO Setear throwbomb
 	if (BombCount <= 0)
 	{
 		return;
@@ -489,6 +492,40 @@ void ANinja::LanzarHumo()
 	{
 		BombCount = 0;
 	}
+
+	//Recoger enemigoa en radio
+	TArray<AActor*> OverlappingActors;
+	UKismetSystemLibrary::SphereOverlapActors
+	(
+		GetWorld(), GetActorLocation(), SmokeBombRadius,
+		TArray<TEnumAsByte<EObjectTypeQuery>>{ UEngineTypes::ConvertToObjectType(ECC_Pawn) },	AEnemy::StaticClass(),
+		TArray<AActor*>{ this },OverlappingActors
+	);
+
+	for (AActor* Actor : OverlappingActors)
+	{
+		AEnemy* Enemy = Cast<AEnemy>(Actor);
+		if (!IsValid(Enemy))
+		{
+			continue;
+		}
+
+		if (AEnemyAIController* AIC = Cast<AEnemyAIController>(Enemy->GetController()))
+		{
+			AIC->SetPerceptionBlocked(true, SmokeBombDuration);
+		}
+	}
+
+	bThrowBomb = true;
+	if (UWorld* World = GetWorld())
+	{
+		World->GetTimerManager().SetTimer(
+			SmokeBombThrowResetHandle,
+			[this]() { bThrowBomb = false; },
+			SmokeBombDuration,
+			false
+		);
+	}
 }
 
 
@@ -511,6 +548,13 @@ void ANinja::SetAiming(bool bNewAiming)
 		{
 			Move->bOrientRotationToMovement = true;
 			AimOffsetUMG = FVector2D::ZeroVector;
+
+			if (APlayerController* PC = Cast<APlayerController>(GetController()))
+			{
+				PC->bShowMouseCursor = false;
+				FInputModeGameOnly NormalMode;
+				PC->SetInputMode(NormalMode);
+			}
 		}
 	}
 	
@@ -659,11 +703,9 @@ void ANinja::OnNinjaFireTriggered(const FInputActionValue& Value)
 	//Activar un puntero invisible para ubicar nuestro crosshair
 	if (APlayerController* PC = Cast<APlayerController>(GetController()))
 	{
-		PC->bShowMouseCursor = false;
-		FInputModeGameAndUI Mode;
-		Mode.SetHideCursorDuringCapture(false);
-		Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockAlways);
-		PC->SetInputMode(Mode);
+		PC->bShowMouseCursor = true;
+		FInputModeGameOnly AimMode;
+		PC->SetInputMode(AimMode);
 	}
 	
 	SetAiming(true);

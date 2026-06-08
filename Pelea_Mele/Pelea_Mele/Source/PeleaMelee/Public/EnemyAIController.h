@@ -40,6 +40,8 @@ public:
 	UPROPERTY(BlueprintAssignable, Category="AI|Awareness")
 	FAwarenessStateChanged OnAwarenessStateChanged;
 
+	void SetPerceptionBlocked(bool bBlocked, float Duration);
+	
 protected:
 	virtual void OnPossess(APawn* InPawn) override;
 	virtual void Tick(float DeltaSeconds) override;
@@ -97,6 +99,9 @@ private:
 	FVector LastHeardLocation = FVector::ZeroVector;
 
 	bool bHasLOS = false;
+
+	bool bPerceptionBlocked = false;
+	FTimerHandle PerceptionRestoreHandle;
 
 	void UpdateAwareness(float DeltaSeconds);
 	void WriteBlackboard(EAwarenessState NewState);

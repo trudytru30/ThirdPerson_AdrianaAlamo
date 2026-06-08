@@ -56,6 +56,7 @@ void AEnemyAIController::OnPossess(APawn* InPawn)
 	LastKnownLocation = FVector::ZeroVector;
 	LastHeardLocation = FVector::ZeroVector;
 	bHasLOS = false;
+	bPerceptionBlocked = false;
 
 	BB->SetValueAsBool(BB_HasLineOfSightKey, false);
 	BB->SetValueAsEnum(BB_AwarenessStateKey, (uint8)EAwarenessState::Doubt);
@@ -87,6 +88,45 @@ void AEnemyAIController::Tick(float DeltaSeconds)
 	UpdateAwareness(DeltaSeconds);
 }
 
+void AEnemyAIController::SetPerceptionBlocked(bool bBlocked, float Duration)
+{
+	bPerceptionBlocked = bBlocked;
+
+	if (!PerceptionComp)
+	{
+		return;
+	}
+
+	if (bBlocked)
+	{
+		PerceptionComp->SetComponentTickEnabled(false);
+	}
+
+	//Cancelar el timer anterior por si se relanza la bomba
+	if (UWorld* World = GetWorld())
+	{
+		World->GetTimerManager().ClearTimer(PerceptionRestoreHandle);
+
+		if (Duration > 0.f)
+		{
+			//[this]() para saber a que objeto hace referencia la funcion
+			World->GetTimerManager().SetTimer(PerceptionRestoreHandle, [this](){SetPerceptionBlocked(false, 0.f);}, Duration, false);
+		}
+	}
+	else
+	{
+		//Rehabilitar perception
+		PerceptionComp->SetComponentTickEnabled(true);
+		bPerceptionBlocked = false;
+
+		//Limpiar LOS
+		bHasLOS = false;
+		if (UBlackboardComponent* BB = GetBlackboardComponent())
+		{
+			BB->SetValueAsBool(BB_HasLineOfSightKey, false);
+		}
+	}
+}
 
 void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
@@ -204,6 +244,13 @@ void AEnemyAIController::UpdateAwareness(float DeltaSeconds)
 	}
 
 	const float Now = GetWorld() ? GetWorld()->GetTimeSeconds() : 0.f;
+
+	if (bPerceptionBlocked)
+	{
+		Suspicion = FMath::Clamp(Suspicion - SuspicionDecayPerSec * DeltaSeconds, 0.f, SuspicionMax);
+		WriteBlackboard(EAwarenessState::Doubt);
+		return;
+	}
 
 	// Subida/bajada principal de sospecha
 	if (bHasLOS && CurrentTarget.IsValid())

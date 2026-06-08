@@ -33,6 +33,17 @@ public:
 
 	APatrolRoute* GetPatrolRoute() const {return PatrolRoute;};
 
+	//---------State---------
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
+	bool bDead = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
+	bool bDoubt = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
+	bool bAlert = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
+	bool bDetected = false;
 
 protected:
 	
@@ -53,21 +64,7 @@ protected:
 	//---------AI---------
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category="AI")
 	APatrolRoute* PatrolRoute = nullptr;
-	
-
-	//---------State---------
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
-	bool bDead = false;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
-	bool bDoubt = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
-	bool bAlert = false;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="State")
-	bool bDetected = false;
-	
-	
+		
 	//---------Death FX---------
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DeathFX")
