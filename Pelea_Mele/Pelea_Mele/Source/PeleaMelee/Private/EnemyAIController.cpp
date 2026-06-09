@@ -186,7 +186,8 @@ void AEnemyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus St
 	{
 		if (Stimulus.WasSuccessfullySensed())
 		{
-			CurrentTarget = Actor; 
+			ANinja* Ninja = Cast<ANinja>(Actor);
+			CurrentTarget = Ninja; 
 			LastHeardTime = Now;
 
 			LastHeardLocation = Stimulus.StimulusLocation;
@@ -294,6 +295,14 @@ void AEnemyAIController::WriteBlackboard(EAwarenessState NewState)
 
 	BB->SetValueAsEnum(BB_AwarenessStateKey, (uint8)NewState);
 
+	//Sincronizar bools de estado para que AnimBP lo lea bien
+	if (AEnemy* OwnerEnemy = Cast<AEnemy>(GetPawn()))
+	{
+		OwnerEnemy->bDetected = (NewState == EAwarenessState::Detected);
+		OwnerEnemy->bAlert = (NewState == EAwarenessState::Alert);
+		OwnerEnemy->bDoubt = (NewState == EAwarenessState::Doubt);
+	}
+	
 	// Target / LastKnown
 	if (NewState == EAwarenessState::Doubt && Suspicion <= KINDA_SMALL_NUMBER)
 	{
@@ -312,10 +321,13 @@ void AEnemyAIController::WriteBlackboard(EAwarenessState NewState)
 
 	if (NewState != CurrentAwarenessState)
 	{
+		if (NewState == EAwarenessState::Doubt)
+		{
+			BB->SetValueAsBool(BB_PatrolNeedsResyncKey, false);
+		}
 		CurrentAwarenessState = NewState;
 		OnAwarenessStateChanged.Broadcast(NewState);
 	}
-	
 }
 
 float AEnemyAIController::ComputeHearingGain(const FAIStimulus& Stimulus, const APawn* ControlledPawn) const
