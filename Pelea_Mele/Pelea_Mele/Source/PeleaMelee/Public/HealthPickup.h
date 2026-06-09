@@ -30,14 +30,14 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	UStaticMeshComponent* Mesh = nullptr;
-	
 
 	// Positivo = cura, negativo = veneno/daño
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Potion")
 	float HealthDelta = 25.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Potion")
-	USoundBase* PickupSound = nullptr;
+	USoundBase* SoundOnPickup = nullptr;
+	
 	// Si no cambia la vida, no se consume
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Potion")
 	bool bConsumeOnlyIfApplied = true;

@@ -101,9 +101,6 @@ public:
 	TSubclassOf<UUserWidget> GameOverMenuWidgetClass;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="GameOver")
-	USoundBase* DeathSound = nullptr;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="GameOver")
 	float GameOverDelaySeconds = 0.4f;
 
 	// ---------- BeginPlay: Input Mapping + HUD ----------
@@ -235,6 +232,17 @@ public:
 	UPROPERTY(EditAnywhere, Category="Aim")
 	FVector2D CrossHairSizeUMG = FVector2D(32.f, 32.f);
 
+	// ---------- Sonido ----------
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	USoundBase* SoundOnDamageRecived = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	USoundBase* SoundOnDeath = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	USoundBase* SoundOnAssassination = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	USoundBase* SoundOnShurikenThrow = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	USoundBase* SoundOnSmokeBomb = nullptr;
 
 private:
 	UPROPERTY()

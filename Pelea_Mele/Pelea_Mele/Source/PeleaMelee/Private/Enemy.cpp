@@ -65,6 +65,8 @@ void AEnemy::BeginPlay()
 	if (HealthComp)
 	{
 		HealthComp->OnDeath.AddDynamic(this, &AEnemy::HandleDeathFromHealth);
+		HealthComp->OnHealthChanged.AddDynamic(this, &AEnemy::OnEnemyDamageTaken);
+		CachedHealth = HealthComp->GetCurrentHealt();
 	}
 	if (MeleeHitbox)
 	{
@@ -131,9 +133,9 @@ void AEnemy::HandleDeath()
 	bDeathHandled = true;
 
 	//FX Audio
-	if (DeathSound)
+	if (SoundOnDeath)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this,DeathSound,GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this,SoundOnDeath,GetActorLocation());
 	}
 	
 	// Desactivar killzone para que no vuelva a disparar overlaps
@@ -201,8 +203,6 @@ void AEnemy::HandleDeath()
 	{
 		Destroy();
 	}
-
-	
 }
 
 void AEnemy::OnDeathMontageBlendingOut(UAnimMontage* Montage, bool bInterrupted)
@@ -288,6 +288,23 @@ void AEnemy::TryApplyMeleeHit(AActor* OtherActor)
 	{
 		NinjaHealth->ApplyDelta(-MeleeDamage);
 	}
+
+	if (SoundOnHit)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, SoundOnHit, GetActorLocation());
+	}
+}
+void AEnemy::OnEnemyDamageTaken(float CurrentHealth, float MaxHealth)
+{
+	if (CurrentHealth < CachedHealth && CurrentHealth > 0.f)
+	{
+		if (SoundOnDamageRecived)
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, SoundOnDamageRecived, GetActorLocation());
+		}
+	}
+
+	CachedHealth = CurrentHealth;
 }
 
 

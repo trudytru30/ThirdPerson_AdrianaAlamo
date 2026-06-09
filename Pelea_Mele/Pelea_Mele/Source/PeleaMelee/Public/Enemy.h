@@ -70,9 +70,6 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DeathFX")
 	UAnimMontage* DeathMontage = nullptr;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="DeathFX")
-	USoundBase* DeathSound = nullptr;
-
 	// Si no hay montage, destruimos al enemigo con un timer
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Death")
 	float DestroyDelayIfNoMontage = 0.1f;
@@ -108,6 +105,13 @@ protected:
 	void OnMeleeHitboxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 								   int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	//---------Audio---------
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	USoundBase* SoundOnDamageRecived = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	USoundBase* SoundOnDeath = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio")
+	USoundBase* SoundOnHit = nullptr;
 
 private:
 	void HandleDeath();
@@ -133,5 +137,12 @@ private:
 	
 	//Implementacion de la Interface
 	virtual void SetMeleeWindowActive_Implementation(bool bActive) override;
-	
+
+	UFUNCTION()
+	void OnEnemyDamageTaken(float CurrentHealth, float MaxHealth);
+
+	//Distinguir daño de curación en el callback
+	float CachedHealth = 0.f;
 };
+
+

@@ -204,12 +204,18 @@ void ANinja::LossHealth(float HealthToLoss)
 	}
 
 	HealthComp->ApplyDelta(-HealthToLoss);
+
+	if (SoundOnDamageRecived)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, SoundOnDamageRecived, GetActorLocation());
+	}
 }
 
 // ---------------- Game Over ----------------
 
 void ANinja::OnNinjaDied()
 {
+	
 	Death(); // tu lógica de game over
 }
 
@@ -237,9 +243,9 @@ void ANinja::Death()
 		}
 	}
 
-	if (DeathSound)
+	if (SoundOnDeath)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, SoundOnDeath, GetActorLocation());
 	}
 
 	if (UWorld* World = GetWorld())
@@ -409,6 +415,11 @@ void ANinja::DoAssassinationAttack()
 		bSneaking = false;
 		return;
 	}
+
+	if (SoundOnAssassination)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, SoundOnAssassination, GetActorLocation());
+	}
 	
 	Enemy->KillByAssassination();
 	
@@ -487,6 +498,10 @@ void ANinja::LanzarHumo()
 		);
 	}
 
+	if (SoundOnSmokeBomb)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, SoundOnSmokeBomb, GetActorLocation());
+	}
 	BombCount -= 1;
 	if (BombCount < 0)
 	{
@@ -723,6 +738,10 @@ void ANinja::OnNinjaFireCompleted(const FInputActionValue& Value)
 	}
 	ShurikensCount = FMath::Max(0, ShurikensCount - 1);
 
+	if (SoundOnShurikenThrow)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, SoundOnShurikenThrow, GetActorLocation());
+	}
 	ApplyShurikenDamageToTarget();
 }
 

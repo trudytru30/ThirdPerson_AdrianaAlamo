@@ -89,9 +89,9 @@ void AHealthPickup::Consume(UHealthComponent* HC)
 	HC->ApplyDelta(HealthDelta);
 	bConsumed = true;
 
-	if (PickupSound)
+	if (SoundOnPickup)
 	{
-		UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
+		UGameplayStatics::PlaySoundAtLocation(this, SoundOnPickup, GetActorLocation());
 	}
 
 	Destroy();
