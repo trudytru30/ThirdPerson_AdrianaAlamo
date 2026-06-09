@@ -67,9 +67,19 @@ void UHealthComponent::TryPlayHitReact()
 	{
 		return;
 	}
+
+	if (!HitReactMontage)
+	{
+		return;
+	}
 	
 	USkeletalMeshComponent* Skel = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
 	UAnimInstance* Anim = Skel ? Skel->GetAnimInstance() : nullptr;
+
+	if (!Anim)
+	{
+		return;
+	}
 
 	Anim->Montage_Play(HitReactMontage,1);
 	bHitReactActive = true;

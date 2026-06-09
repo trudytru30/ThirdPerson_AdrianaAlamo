@@ -401,17 +401,17 @@ void ANinja::DoAssassinationAttack()
 		PlayAnimMontage(AssassinMontage, 1.0f);
 	}
 	AEnemy* Enemy = Cast<AEnemy>(Victim);
-	Enemy->KillByAssassination();
-	// Victim montage (Play Anim Montage en Victim si es Character)
-	/*
-	if (VictimAssassinatedMontage)
+
+	//Solo se puede hacer assasiantion a enemigos
+	if (!Enemy)
 	{
-		if (ACharacter* VictimChar = Cast<ACharacter>(Victim))
-		{
-			VictimChar->PlayAnimMontage(VictimAssassinatedMontage, 1.0f);
-		}
+		Victim = nullptr;
+		bSneaking = false;
+		return;
 	}
-	*/
+	
+	Enemy->KillByAssassination();
+	
 	// BP: Set Victim (vacío) + Set Sneaking? false
 	Victim = nullptr;
 	bSneaking = false;
@@ -714,6 +714,9 @@ void ANinja::OnNinjaFireTriggered(const FInputActionValue& Value)
 
 void ANinja::OnNinjaFireCompleted(const FInputActionValue& Value)
 {
+	SetCrossHairVisible(false);
+	SetAiming(false);
+	
 	if (ShurikensCount <= 0)
 	{
 		return;
@@ -721,11 +724,7 @@ void ANinja::OnNinjaFireCompleted(const FInputActionValue& Value)
 	ShurikensCount = FMath::Max(0, ShurikensCount - 1);
 
 	ApplyShurikenDamageToTarget();
-	SetCrossHairVisible(false);
-	SetAiming(false);
 }
-
-
 
 void ANinja::SetCrossHairVisible(bool bVisible)
 {
