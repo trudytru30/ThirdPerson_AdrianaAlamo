@@ -101,18 +101,6 @@ void AEnemyAIController::SetPerceptionBlocked(bool bBlocked, float Duration)
 	{
 		PerceptionComp->SetComponentTickEnabled(false);
 	}
-
-	//Cancelar el timer anterior por si se relanza la bomba
-	if (UWorld* World = GetWorld())
-	{
-		World->GetTimerManager().ClearTimer(PerceptionRestoreHandle);
-
-		if (Duration > 0.f)
-		{
-			//[this]() para saber a que objeto hace referencia la funcion
-			World->GetTimerManager().SetTimer(PerceptionRestoreHandle, [this](){SetPerceptionBlocked(false, 0.f);}, Duration, false);
-		}
-	}
 	else
 	{
 		//Rehabilitar perception
@@ -124,6 +112,18 @@ void AEnemyAIController::SetPerceptionBlocked(bool bBlocked, float Duration)
 		if (UBlackboardComponent* BB = GetBlackboardComponent())
 		{
 			BB->SetValueAsBool(BB_HasLineOfSightKey, false);
+		}
+	}
+
+	//Cancelar el timer anterior por si se relanza la bomba
+	if (UWorld* World = GetWorld())
+	{
+		World->GetTimerManager().ClearTimer(PerceptionRestoreHandle);
+
+		if (Duration > 0.f)
+		{
+			//[this]() para saber a que objeto hace referencia la funcion
+			World->GetTimerManager().SetTimer(PerceptionRestoreHandle, [this](){SetPerceptionBlocked(false, 0.f);}, Duration, false);
 		}
 	}
 }

@@ -198,6 +198,11 @@ void ANinja::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void ANinja::LossHealth(float HealthToLoss)
 {
+	if (bDeathTriggered)
+	{
+		return;
+	}
+	
 	if (!HealthComp)
 	{
 		return;
@@ -371,6 +376,16 @@ void ANinja::DoAssassinationAttack()
 		return;
 	}
 
+	AEnemy* Enemy = Cast<AEnemy>(Victim);
+
+	//Solo se puede hacer assasiantion a enemigos
+	if (!Enemy)
+	{
+		Victim = nullptr;
+		bSneaking = false;
+		return;
+	}
+
 	AssassinationVictim = Victim;
 	
 	// Motion Warping: AddOrUpdate target "Victim" desde VictimTarget (SceneComponent) si existe
@@ -405,15 +420,6 @@ void ANinja::DoAssassinationAttack()
 		}
 
 		PlayAnimMontage(AssassinMontage, 1.0f);
-	}
-	AEnemy* Enemy = Cast<AEnemy>(Victim);
-
-	//Solo se puede hacer assasiantion a enemigos
-	if (!Enemy)
-	{
-		Victim = nullptr;
-		bSneaking = false;
-		return;
 	}
 
 	if (SoundOnAssassination)
