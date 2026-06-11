@@ -9,15 +9,16 @@
   <component name="ChangeListManager">
     <list default="true" id="629b077d-22e4-4bd9-bd92-d9130ceb4313" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/Door.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/Key.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/DoorKey.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/Door.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/Key.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/PeleaMelee/Public/DoorKey.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PeleaMelee.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PeleaMelee.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Enemy/BP_EnemyCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Enemy/BP_EnemyCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Characters/Ninja/BPs/Character/BP_NinjaCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Characters/Ninja/BPs/Character/BP_NinjaCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/EnvironmentPack2/Maps/DemoMap3.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/EnvironmentPack2/Maps/DemoMap3.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/TEST.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TEST.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/HDRI/HDRI_Epic_Courtyard_Daylight.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/EnemyAIController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/EnemyAIController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/HealthPickup.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/HealthPickup.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PeleaMelee/Private/Ninja.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +44,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="cidr-memory-view://5" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://6" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/PeleaMelee.Build.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/Private/Enemy.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/PeleaMelee/Private/EnemyAIController.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -217,6 +216,8 @@
       <workItem from="1780833101642" duration="7457000" />
       <workItem from="1780995666379" duration="11210000" />
       <workItem from="1781089689730" duration="4690000" />
+      <workItem from="1781104766118" duration="1469000" />
+      <workItem from="1781170957459" duration="4210000" />
     </task>
     <servers />
   </component>
