@@ -363,6 +363,7 @@ void ANinja::OnNinjaAttackStarted(const FInputActionValue& Value)
 	{
 		DoAssassinationAttack();
 	}
+	
 	else
 	{
 		LanzarHumo();
@@ -509,6 +510,7 @@ void ANinja::LanzarHumo()
 		UGameplayStatics::PlaySoundAtLocation(this, SoundOnSmokeBomb, GetActorLocation());
 	}
 	BombCount -= 1;
+	UE_LOG(LogTemp, Warning, TEXT("BombCount: %d"), BombCount);
 	if (BombCount < 0)
 	{
 		BombCount = 0;

@@ -15,4 +15,5 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="RunState")
 	int32 BombCount = 0;
+
 };
